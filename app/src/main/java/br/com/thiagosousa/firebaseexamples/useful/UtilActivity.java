@@ -137,4 +137,18 @@ public class UtilActivity extends AppCompatActivity {
     }
     //    [End]: isEmptyField()
 
+//    [Start]: isEqualFields()
+public boolean isEqualFields(TextInputEditText fieldA, TextInputEditText fieldB) {
+
+    boolean isEqual = fieldB.getText().toString().equals(fieldA.getText().toString());
+
+    Log.d(UTILACTIVITYTAG, "isEqualField() is called : " + isEqual + "\nFields contents: \n"
+            + "FieldA: " + fieldA.getText().toString() + "\n"
+            + "FieldB: " + fieldB.getText().toString());
+
+
+    return isEqual;
+}
+//    [End]: isEqualFields()
+
 }

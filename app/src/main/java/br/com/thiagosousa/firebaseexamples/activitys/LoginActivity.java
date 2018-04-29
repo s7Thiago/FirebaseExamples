@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
 
@@ -109,10 +111,24 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
                 startActivity(new Intent(context, RegisterActivity.class));
                 break;
             case R.id.signInButton:
-                Log.i(LOGINAVTIVITYTAG, "O evento de clique em onClick() do botão de login foi clicado");
+                Log.i(LOGINAVTIVITYTAG, "onClick(): O botão de login foi pressionado");
+
                 String email = (emailField.getText().toString());
                 String password = (passwordField.getText().toString());
-                connectUser(email, password);
+
+                TextInputEditText[] loginFields = new TextInputEditText[]{emailField, passwordField};
+                for(TextInputEditText loginField: loginFields) {
+                    if(isEmptyField(loginField)){
+
+                        Log.w(LOGINAVTIVITYTAG, "Algum campo está vazio. ID: " + loginField.getId());
+                        loginField.setError(getString(R.string.empty_field_msg));
+                    } else {
+                        Log.w(LOGINAVTIVITYTAG, "Tudo certo com os campos de login!\nAutenticando para " +
+                                Objects.requireNonNull(mAuth.getCurrentUser()).getEmail());
+                        connectUser(email, password);
+                    }
+                }
+
                 break;
         }
     }

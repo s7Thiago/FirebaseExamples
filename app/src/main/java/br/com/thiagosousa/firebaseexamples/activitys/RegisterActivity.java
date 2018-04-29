@@ -108,10 +108,24 @@ public class RegisterActivity extends AuthActivity implements View.OnClickListen
         switch (view.getId()) {
             case R.id.createNewUserButton:
                 Log.i(REGISTERACTIVITYTAG, "O evento de clique em onClick() do botão de login foi clicado");
+
                 String email = (emailField.getText().toString());
                 String password = (passwordField.getText().toString());
-                newUser(email, password);
+
+                TextInputEditText[] registerFields = new TextInputEditText[]{emailField, passwordField};
+
+                for (TextInputEditText registerField : registerFields) {
+                    if (isEmptyField(registerField)) {
+                        Log.w(REGISTERACTIVITYTAG, "Algum campo está vazio. ID: " + registerField.getId());
+                        registerField.setError(getString(R.string.empty_field_msg));
+                    } else {
+                        Log.w(REGISTERACTIVITYTAG, "Tudo certo com os campos de login!\nAutenticando para " +
+                                Objects.requireNonNull(mAuth.getCurrentUser()).getEmail());
+                        newUser(email, password);
+                    }
+                }
                 break;
+
             case R.id.mainContainerRegister:
                 updateUI(mAuth.getCurrentUser());
                 break;

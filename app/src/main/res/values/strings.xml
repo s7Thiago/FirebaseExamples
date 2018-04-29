@@ -14,6 +14,7 @@
     <string name="action_disconnect">Disconnect</string>
     <string name="action_home_screen">Home screen</string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="no_user_connected_msg">Ninguém conectado</string>
+    <string name="no_user_connected_msg">nobody connected</string>
+    <string name="empty_field_msg">This field can not be empty</string>
 
 </resources>

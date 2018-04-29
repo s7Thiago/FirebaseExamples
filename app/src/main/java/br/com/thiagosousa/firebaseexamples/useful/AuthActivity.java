@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
+import br.com.thiagosousa.firebaseexamples.activitys.HomeActivity;
 
 @SuppressLint("Registered")
 public class AuthActivity extends UtilActivity {
@@ -65,11 +65,14 @@ public class AuthActivity extends UtilActivity {
 
                             showProgressDialog(false);
                             updateUI(user);
+                            openScreen(HomeActivity.class);
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(AUTHACTICITYTAG, "createUserWithEmail:failure", task.getException());
                             showToastShort("Authentication failed.");
                             updateUI(null);
+                            showProgressDialog(false);
                         }
 
                         // ...
@@ -80,7 +83,7 @@ public class AuthActivity extends UtilActivity {
     //    [End]: newUser()
 
     //[Start]: connectUser()
-    public void connectUser(String email, String password){
+    public void connectUser(String email, String password) {
 
         showProgressDialog(true);
 
@@ -95,11 +98,14 @@ public class AuthActivity extends UtilActivity {
 
                             showProgressDialog(false);
                             updateUI(user);
+                            openScreen(HomeActivity.class);
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(AUTHACTICITYTAG, "signInWithEmail:failure", task.getException());
                             showToastShort("Authentication failed.");
                             updateUI(null);
+                            showProgressDialog(false);
                         }
 
                         // ...
