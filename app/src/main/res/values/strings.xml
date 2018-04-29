@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Firebase Examples</string>
+    <string name="action_settings">Settings</string>
+    <string name="loading">Loading</string>
+    <string name="hint_email_field">Email</string>
+    <string name="hint_password_field">Password</string>
+    <string name="button_register">I want an account</string>
+    <string name="login_button">Sign in</string>
+    <string name="button_register_screen_opening">Opening register screen</string>
+    <string name="register_confirm_password">Confirm password</string>
+    <string name="register_name">Name</string>
+    <string name="button_register_register">create my account</string>
+    <string name="register_last_name">Last name</string>
+    <string name="action_disconnect">Disconnect</string>
+    <string name="action_home_screen">Home screen</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="no_user_connected_msg">Ninguém conectado</string>
+
+</resources>
