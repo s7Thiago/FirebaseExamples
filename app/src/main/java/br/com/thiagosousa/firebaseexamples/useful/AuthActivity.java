@@ -2,6 +2,7 @@ package br.com.thiagosousa.firebaseexamples.useful;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.util.Log;
 import android.view.View;
 
@@ -22,25 +23,12 @@ public class AuthActivity extends UtilActivity {
 
     protected FirebaseAuth mAuth;
 
-
-    //    [Start]: onStart()
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-
-    }
-    //    [End]: onStart()
-
     //    [Start]: updateUI()
     public void updateUI(FirebaseUser user) {
         if (user != null) {
 //            Se houver alguém conectado
             showToastShort(user.getEmail() + " está logado agora");
-            Log.i(AUTHACTICITYTAG, "o updateUI() detectou que " + user.getEmail() + " está logado.");
+            Log.w(AUTHACTICITYTAG, "o updateUI() detectou que " + user.getEmail() + " está logado.");
         } else {
 //            Se não houver ninguém conectado
             showToastShort((getString(R.string.no_user_connected_msg)) + " :(");
@@ -84,6 +72,7 @@ public class AuthActivity extends UtilActivity {
 
     //[Start]: connectUser()
     public void connectUser(String email, String password) {
+        final boolean completed;
 
         showProgressDialog(true);
 
@@ -96,10 +85,11 @@ public class AuthActivity extends UtilActivity {
                             Log.d(AUTHACTICITYTAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
+                            finish();
+                            openScreen(HomeActivity.class);
                             showProgressDialog(false);
                             updateUI(user);
-                            openScreen(HomeActivity.class);
-                            finish();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(AUTHACTICITYTAG, "signInWithEmail:failure", task.getException());
@@ -135,5 +125,33 @@ public class AuthActivity extends UtilActivity {
         return mAuth.getCurrentUser() != null;
     }
 //    [End]: isAnyoneConnected()
+
+    //    [Start]: verifyFields()
+    protected boolean verifyFields(TextInputEditText[] textInputEditTexts) {
+        boolean fieldsOK = false;
+
+        Log.i(AUTHACTICITYTAG, "verifiyng login fields...");
+
+        for (TextInputEditText textInputEditText : textInputEditTexts) {
+
+            if (!isEmptyField(textInputEditText)) {
+
+//                Está tudo correto. Nenhum campo vazio
+                Log.i(AUTHACTICITYTAG, "There´s nothing wrong with the fields!");
+                fieldsOK = true;
+            } else {
+
+//                Foi detectado algum campo vazio. mostrar mensagem de erro
+                Log.i(AUTHACTICITYTAG, "There is something wrong with the fields!");
+                fieldsOK = false;
+                textInputEditText.setError(getString(R.string.empty_field_msg));
+            }
+
+        }
+
+        Log.w(AUTHACTICITYTAG, "verifyLoginFields() returned " + fieldsOK + ".");
+        return fieldsOK;
+    }
+//    [End]:verifyFields()
 
 }

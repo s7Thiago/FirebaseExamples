@@ -9,8 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
@@ -86,7 +85,19 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
     @Override
     protected void onStart() {
         super.onStart();
-//        isShowingKeyboard();
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+
+        //        Verifica se há alguém conectado, e abre a HomeActivity se positivo
+        if (isAnyoneConnected()) {
+            openScreen(HomeActivity.class);
+            finish();
+        } else {
+            Log.i(LOGINAVTIVITYTAG,"Não há ninguém conectado. Permanecendo nesta tela." );
+        }
+
     }
 //    [End]: onStart method
 
@@ -110,6 +121,7 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
 //                finish();
                 startActivity(new Intent(context, RegisterActivity.class));
                 break;
+
             case R.id.signInButton:
                 Log.i(LOGINAVTIVITYTAG, "onClick(): O botão de login foi pressionado");
 
@@ -117,20 +129,17 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
                 String password = (passwordField.getText().toString());
 
                 TextInputEditText[] loginFields = new TextInputEditText[]{emailField, passwordField};
-                for(TextInputEditText loginField: loginFields) {
-                    if(isEmptyField(loginField)){
 
-                        Log.w(LOGINAVTIVITYTAG, "Algum campo está vazio. ID: " + loginField.getId());
-                        loginField.setError(getString(R.string.empty_field_msg));
-                    } else {
-                        Log.w(LOGINAVTIVITYTAG, "Tudo certo com os campos de login!\nAutenticando para " +
-                                Objects.requireNonNull(mAuth.getCurrentUser()).getEmail());
-                        connectUser(email, password);
-                    }
+                if (verifyFields(loginFields)) {
+//                    Se não houver nada de errado com os campos
+                    connectUser(email, password);
+
+                } else {
+//                    Se houver algo de errado com algum dos campos
+                    Log.w(LOGINAVTIVITYTAG,"Há algo de errado com algum dos campos" );
                 }
-
                 break;
         }
     }
-//    [End]: onClick method
+    //    [End]: onClick method
 }
