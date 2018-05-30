@@ -16,5 +16,8 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="no_user_connected_msg">nobody connected</string>
     <string name="empty_field_msg">This field can not be empty</string>
+    <string name="type">Type here</string>
+    <string name="send_to_database_bt">Send</string>
+    <string name="database_screen_label">Database Connection</string>
 
 </resources>

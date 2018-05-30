@@ -72,7 +72,6 @@ public class AuthActivity extends UtilActivity {
 
     //[Start]: connectUser()
     public void connectUser(String email, String password) {
-        final boolean completed;
 
         showProgressDialog(true);
 

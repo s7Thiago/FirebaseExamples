@@ -17,8 +17,9 @@ import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
-public class RegisterActivity extends AuthActivity implements View.OnClickListener {
+public class RegisterActivity extends AuthDataBaseActivity implements View.OnClickListener {
 
     private static final String REGISTERACTIVITYTAG = "RegisterActivity";
 
@@ -119,22 +120,26 @@ public class RegisterActivity extends AuthActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.createNewUserButton:
-                Log.i(REGISTERACTIVITYTAG, "O evento de clique em onClick() do botão de login foi clicado");
+                Log.i(REGISTERACTIVITYTAG, "O evento de clique em do botão de registro foi chamado");
 
                 String email = (emailField.getText().toString());
                 String password = (passwordField.getText().toString());
+                int cont = 0;
 
                 TextInputEditText[] registerFields = new TextInputEditText[]{emailField, passwordField};
 
                 for (TextInputEditText registerField : registerFields) {
-                    if (isEmptyField(registerField)) {
+                    Log.w(REGISTERACTIVITYTAG, "Verificando campo " + cont);
+                    if (isEmptyField(registerFields[cont])) {
                         Log.w(REGISTERACTIVITYTAG, "Algum campo está vazio. ID: " + registerField.getId());
                         registerField.setError(getString(R.string.empty_field_msg));
                     } else {
-                        Log.w(REGISTERACTIVITYTAG, "Tudo certo com os campos de login!\nAutenticando para " +
-                                Objects.requireNonNull(mAuth.getCurrentUser()).getEmail());
                         newUser(email, password);
+
+                        /*Log.w(REGISTERACTIVITYTAG, "Tudo certo com os campos de login!\nAutenticando para " +
+                                (mAuth.getCurrentUser()).getEmail());*/
                     }
+                    cont++;
                 }
                 break;
 

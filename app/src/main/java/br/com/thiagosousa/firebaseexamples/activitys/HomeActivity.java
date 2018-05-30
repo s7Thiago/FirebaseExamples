@@ -1,5 +1,6 @@
 package br.com.thiagosousa.firebaseexamples.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,17 +10,23 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.thiagosousa.firebaseexamples.R;
-import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
-public class HomeActivity extends AuthActivity implements View.OnClickListener {
+public class HomeActivity extends AuthDataBaseActivity implements View.OnClickListener {
     private static final String HOMEACTIVITYTAG = "Home activity event";
 
     private FloatingActionButton fab;
     private Toolbar toolbar;
+    private ListView homeItens;
+    private String[] itens = new String[]{"Interação com o Firebase Database"};
+    private ArrayAdapter<String> mAdapter;
 
     //    [Start]: onCreate()
     @Override
@@ -28,6 +35,21 @@ public class HomeActivity extends AuthActivity implements View.OnClickListener {
         setContentView(R.layout.activity_home);
         initViews(true);
         configureScreen(true);
+
+        homeItens.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+
+                    case 0:
+                        startActivity(new Intent(getBaseContext(), FirebaseDatabaseActivity.class));
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        });
 
     }
     //    [End]: onCreate()
@@ -48,6 +70,7 @@ public class HomeActivity extends AuthActivity implements View.OnClickListener {
 
             fab = findViewById(R.id.fab);
             toolbar = findViewById(R.id.toolbar);
+            homeItens = findViewById(R.id.home_listView);
 
         } else {
             Log.w(HOMEACTIVITYTAG, "initViews() is desactivated in HOMEACTIVITY");
@@ -70,6 +93,10 @@ public class HomeActivity extends AuthActivity implements View.OnClickListener {
 
             //            Initializing the firebase
             mAuth = FirebaseAuth.getInstance();
+
+//           Setting up the ListView
+            mAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1, itens);
+            homeItens.setAdapter(mAdapter);
 
         } else {
             Log.w(HOMEACTIVITYTAG, "configureScreen() is desactivated in HOMEACTIVITY");
@@ -116,8 +143,13 @@ public boolean onOptionsItemSelected(MenuItem item) {
             Log.w(HOMEACTIVITYTAG, "Opening the LoginScreen...");
             openScreen(LoginActivity.class);
             break;
+
+        case R.id.set_message_in_database:
+            sendMessageToDatabase("Olá, mundo!!!");
+            break;
     }
     return true;
 }
 //    [End]: onOptionsItemSelected()
+
 }
