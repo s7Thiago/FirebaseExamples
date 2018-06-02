@@ -16,6 +16,8 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
@@ -110,7 +112,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Bem-vindo(a), " + Objects.requireNonNull(mAuth.getCurrentUser()).getEmail(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 break;
             default:
