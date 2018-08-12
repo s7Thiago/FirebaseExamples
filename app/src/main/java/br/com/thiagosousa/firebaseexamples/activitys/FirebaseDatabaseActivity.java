@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.nio.charset.Charset;
+import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
@@ -30,6 +33,9 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
 
 //        Setup of views clicks
         sendToDatabaseButton.setOnClickListener(this);
+
+        //initializing FirebaseAuth
+        mAuth = FirebaseAuth.getInstance();
     }
 //    [End]:onCreate()
 
@@ -102,13 +108,17 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.send_to_database_button:
-                Log.w(TAGFIREBASEDATABASEACTIVITY, "send_to_database_button is clicked");
-                String mMessage = (Build.BRAND + "\n" + contentData.getText().toString());
-                Log.i(TAGFIREBASEDATABASEACTIVITY, "Sending message_textview: " + mMessage);
-                sendMessageToDatabase(mMessage);
+                if(!isEmptyField(contentData)) {
+                    Log.w(TAGFIREBASEDATABASEACTIVITY, "send_to_database_button is clicked");
+                    String mMessage = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail() + "\n" + contentData.getText().toString();
+                    Log.i(TAGFIREBASEDATABASEACTIVITY, "Sending message_textview: " + mMessage);
+                    sendMessageToDatabase(mMessage);
 
-                //Atualizando a tela com o estado atual do Banco de dados
-                updateUI(message_textview);
+                    //Atualizando a tela com o estado atual do Banco de dados
+                    updateUI(message_textview);
+                }else{
+                    showToastShort("Please, type something");
+                }
                 break;
         }
     }

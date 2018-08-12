@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activitys.RegisterActivity"
             android:exported="true"
@@ -38,13 +37,11 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.thiagosousa.firebaseexamples.useful.UtilActivity" />
-
         </activity>
         <activity
-            android:label="@string/database_screen_label"
-            android:name=".activitys.FirebaseDatabaseActivity" />
-
-
+            android:name=".activitys.FirebaseDatabaseActivity"
+            android:label="@string/database_screen_label" />
+        <activity android:name=".activitys.SpinnerActivity"></activity>
     </application>
 
 </manifest>

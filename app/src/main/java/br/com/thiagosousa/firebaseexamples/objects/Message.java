@@ -4,7 +4,7 @@ public class Message {
 
     private String messageContent;
 
-    //NEcessário para uso no Firebase Database
+    //Necessário para uso no Firebase Database
     public Message() {
     }
 

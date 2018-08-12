@@ -42,7 +42,7 @@ public class UtilActivity extends AppCompatActivity {
 
     //    [Start]: isShowingKeyboard()
     public boolean isShowingKeyboard() {
-        boolean showed = false;
+        boolean showed;
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 
         if (Objects.requireNonNull(inputMethodManager).isAcceptingText()) {

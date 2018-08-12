@@ -1,5 +1,7 @@
 package br.com.thiagosousa.firebaseexamples.objects;
 
+import android.support.annotation.NonNull;
+
 public class User extends Person {
 
     private String username;
@@ -8,6 +10,14 @@ public class User extends Person {
 
     //    [Start]: User()
     public User() {
+    }
+//    [End]: User()
+
+    //    [Start]: User()
+    public User(String username, @NonNull String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 //    [End]: User()
 

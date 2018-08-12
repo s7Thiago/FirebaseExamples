@@ -16,12 +16,14 @@ import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.activitys.HomeActivity;
+import br.com.thiagosousa.firebaseexamples.objects.User;
 
 @SuppressLint("Registered")
 public class AuthActivity extends UtilActivity {
     private static final String AUTHACTICITYTAG = "Auth event";
 
     protected FirebaseAuth mAuth;
+    private User objectUser; //is used to stores util datas to be used for other classes
 
     //    [Start]: updateUI()
     public void updateUI(FirebaseUser user) {
@@ -71,7 +73,7 @@ public class AuthActivity extends UtilActivity {
     //    [End]: newUser()
 
     //[Start]: connectUser()
-    public void connectUser(String email, String password) {
+    public void connectUser(final String email, final String password) {
 
         showProgressDialog(true);
 
@@ -83,6 +85,13 @@ public class AuthActivity extends UtilActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(AUTHACTICITYTAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            //Instantiate a user object and fill the util attributes with data
+                            setUser(new User(null, email, password));
+
+                            Log.w(AUTHACTICITYTAG, "Created a new User instance: \n\n"
+                            + "Email: " + getUser().getEmail()
+                            +"\nPassword: " + password  +"\n");
 
                             finish();
                             openScreen(HomeActivity.class);
@@ -153,4 +162,13 @@ public class AuthActivity extends UtilActivity {
     }
 //    [End]:verifyFields()
 
+    //    [Start]:getters and setters for user object
+    public User getUser() {
+        return objectUser;
+    }
+
+    public void setUser(User user) {
+        this.objectUser = user;
+    }
+//    [End]:getters and setters for user object
 }

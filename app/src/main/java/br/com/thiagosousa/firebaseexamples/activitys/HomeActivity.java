@@ -21,13 +21,15 @@ import java.util.Objects;
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
-public class HomeActivity extends AuthDataBaseActivity implements View.OnClickListener {
+public class HomeActivity extends AuthDataBaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     private static final String HOMEACTIVITYTAG = "Home activity event";
 
     private FloatingActionButton fab;
     private Toolbar toolbar;
     private ListView homeItens;
-    private String[] itens = new String[]{"Interação com o Firebase Database"};
+    private String[] itens = new String[]{
+            "Interação com o Firebase Database",
+            "Exemplos de lista (com Spinner Selector)"};
     private ArrayAdapter<String> mAdapter;
 
     //    [Start]: onCreate()
@@ -38,20 +40,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
         initViews(true);
         configureScreen(true);
 
-        homeItens.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-
-                    case 0:
-                        startActivity(new Intent(getBaseContext(), FirebaseDatabaseActivity.class));
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-        });
+        homeItens.setOnItemClickListener(this);
 
     }
     //    [End]: onCreate()
@@ -153,5 +142,24 @@ public boolean onOptionsItemSelected(MenuItem item) {
     return true;
 }
 //    [End]: onOptionsItemSelected()
+
+    //[Start]: onItemClick()
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+
+            case 0:
+                startActivity(new Intent(getBaseContext(), FirebaseDatabaseActivity.class));
+                break;
+
+            case 1:
+                startActivity(new Intent(getBaseContext(), SpinnerActivity.class));
+                break;
+
+            default:
+                break;
+        }
+    }
+    //[End]: onItemClick()
 
 }

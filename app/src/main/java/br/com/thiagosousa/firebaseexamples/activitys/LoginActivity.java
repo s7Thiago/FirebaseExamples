@@ -142,4 +142,46 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
         }
     }
     //    [End]: onClick method
+
+    //[Start]: onSaveInstanceState()
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        emailField = findViewById(R.id.email_field_for_login);
+        passwordField = findViewById(R.id.password_field_for_login);
+
+        String email = String.valueOf(emailField.getText().toString()),
+                password = String.valueOf(passwordField.getText().toString());
+
+        /*Capturando os dados dos campos mais importantes desta tela para serem recuperados
+        caso a tela seja rotacionada*/
+        Log.w(LOGINAVTIVITYTAG,"onSaveInstanceState() em LoginActivity foi chamado");
+        outState.putString("loginEmailSaveData", email);
+        outState.putString("loginPasswordSaveData", password);
+        super.onSaveInstanceState(outState);
+    }
+    //[End]: onSaveInstanceState()
+
+    //[Start]: onRestoreInstanceState()
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        emailField = findViewById(R.id.email_field_for_login);
+        passwordField = findViewById(R.id.password_field_for_login);
+
+        Log.w(LOGINAVTIVITYTAG,"onRestoreInstanceState() em LoginActivity foi chamado");
+        Log.w(LOGINAVTIVITYTAG,"Restaurando as seguntes informações para as respectivas views:" +
+                "\n\n" + String.valueOf(savedInstanceState.getString("loginEmailSaveData")) +
+        "\n" + String.valueOf(savedInstanceState.getString("loginPasswordSaveData")));
+
+        //Recuperando informações gravadas pelo método onSaveInstanceState()
+        String email = String.valueOf(savedInstanceState.getString("loginEmailSaveData")),
+                password = String.valueOf(savedInstanceState.getString("loginPasswordSaveData"));
+
+        //Realocando as informações nas suas respectivas views
+        emailField.setText(email);
+        passwordField.setText(password);
+
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+    //[End]: onRestoreInstanceState()
+
 }

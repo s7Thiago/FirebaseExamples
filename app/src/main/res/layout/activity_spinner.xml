@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activitys.SpinnerActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:id="@+id/spinner_SpinnerActivity"
+            android:layout_height="0dp"
+            android:layout_weight="0.195">
+        </android.support.v7.widget.AppCompatSpinner>
+
+        <LinearLayout
+            android:layout_margin="@dimen/button_margin_top"
+            android:id="@+id/fragments_container_spinnerActivity"
+            android:layout_width="match_parent"
+           android:layout_weight="3"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            />
+
+        <LinearLayout
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                style="@android:style/Widget.Material.ButtonBar"
+                android:id="@+id/spinnerActivity_ActionButton1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="No Action"/>
+
+            <Button
+                style="@android:style/Widget.Material.ButtonBar"
+                android:id="@+id/spinnerActivity_ActionButton2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Remove Fragment"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
