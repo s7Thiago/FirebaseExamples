@@ -37,7 +37,6 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
     private void initViews(boolean init) {
         if (init) {
 //            if init is true, initialize views
-            init = true;
             registerScreenButton = findViewById(R.id.registerScreenButton);
             emailField = findViewById(R.id.email_field_for_login);
             passwordField = findViewById(R.id.password_field_for_login);
@@ -45,7 +44,7 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
 
         } else {
 //            if init is false, do nothing
-            init = false;
+            Log.i(LOGINAVTIVITYTAG, "initViews() is desactivated");
         }
     }
 //    [End]: initViews method
@@ -69,14 +68,13 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
     public void initOnclickOfViews(boolean init) {
         if (init) {
 //            if init is true, initialize onClick of views
-            init = true;
 
             registerScreenButton.setOnClickListener(this);
             loginButton.setOnClickListener(this);
 
         } else {
 //            if init is false, do nothing
-            init = false;
+            Log.w(LOGINAVTIVITYTAG, "The inclick of all views has been desactivated!");
         }
     }
     //    [End]: initOnclickOfViews()
