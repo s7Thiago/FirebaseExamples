@@ -41,7 +41,9 @@
         <activity
             android:name=".activitys.FirebaseDatabaseActivity"
             android:label="@string/database_screen_label" />
-        <activity android:name=".activitys.SpinnerActivity"></activity>
+        <activity android:name=".activitys.SpinnerActivity" />
+        <activity
+            android:label="Material classification" android:name=".activitys.CustomListActivity"></activity>
     </application>
 
 </manifest>

@@ -14,8 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
@@ -29,7 +27,8 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     private ListView homeItens;
     private String[] itens = new String[]{
             "Interação com o Firebase Database",
-            "Exemplos de lista (com Spinner Selector)"};
+            "Exemplos de lista (com Spinner Selector)",
+            "ListView Customizado"};
     private ArrayAdapter<String> mAdapter;
 
     //    [Start]: onCreate()
@@ -83,7 +82,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
             fab.setOnClickListener(this);
 
             //            Initializing the firebase
-            mAuth = FirebaseAuth.getInstance();
+            mAuth = getFirebaseAuthInstance();
 
 //           Setting up the ListView
             mAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1, itens);
@@ -123,30 +122,30 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     }
 //    [End]: onCreateOptionsMenu()
 
-//    [Start]: onOptionsItemSelected()
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-        case R.id.action_disconnect:
-            signOut(null);
-            Log.w(HOMEACTIVITYTAG, "Menu Action_signOut: Current User is signed out");
-            finish();
-            Log.w(HOMEACTIVITYTAG, "Opening the LoginScreen...");
-            openScreen(LoginActivity.class);
-            break;
+    //    [Start]: onOptionsItemSelected()
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_disconnect:
+                signOut(null);
+                Log.w(HOMEACTIVITYTAG, "Menu Action_signOut: Current User is signed out");
+                finish();
+                Log.w(HOMEACTIVITYTAG, "Opening the LoginScreen...");
+                openScreen(LoginActivity.class);
+                break;
 
-        case R.id.set_message_in_database:
-            sendMessageToDatabase("Olá, mundo!!!");
-            break;
+            case R.id.set_message_in_database:
+                sendMessageToDatabase("Olá, mundo!!!");
+                break;
+        }
+        return true;
     }
-    return true;
-}
 //    [End]: onOptionsItemSelected()
 
     //[Start]: onItemClick()
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        switch (position){
+        switch (position) {
 
             case 0:
                 startActivity(new Intent(getBaseContext(), FirebaseDatabaseActivity.class));
@@ -156,7 +155,13 @@ public boolean onOptionsItemSelected(MenuItem item) {
                 startActivity(new Intent(getBaseContext(), SpinnerActivity.class));
                 break;
 
+            case 2:
+                openScreen(CustomListActivity.class);
+                break;
+
             default:
+                Log.w(HOMEACTIVITYTAG, getResources().getString(R.string.no_action_attirbuted));
+                showToastShort(getResources().getString(R.string.no_action_attirbuted));
                 break;
         }
     }

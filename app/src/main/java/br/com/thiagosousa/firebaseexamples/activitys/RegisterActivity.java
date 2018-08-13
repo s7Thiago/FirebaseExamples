@@ -137,7 +137,7 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
                         newUser(email, password);
 
                         /*Log.w(REGISTERACTIVITYTAG, "Tudo certo com os campos de login!\nAutenticando para " +
-                                (mAuth.getCurrentUser()).getEmail());*/
+                                (mAuth.getFirebaseAuthInstance()).getEmail());*/
                     }
                     cont++;
                 }

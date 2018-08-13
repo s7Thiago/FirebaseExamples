@@ -135,6 +135,9 @@ public class AuthActivity extends UtilActivity {
 //    [End]: isAnyoneConnected()
 
     //    [Start]: verifyFields()
+    /**
+     * Used for validate a collection fields, not alow that some are void content
+     **/
     protected boolean verifyFields(TextInputEditText[] textInputEditTexts) {
         boolean fieldsOK = false;
 
@@ -161,6 +164,12 @@ public class AuthActivity extends UtilActivity {
         return fieldsOK;
     }
 //    [End]:verifyFields()
+
+    //    [Start]:getFirebaseAuthInstance()
+    public FirebaseAuth getFirebaseAuthInstance() {
+        return mAuth = FirebaseAuth.getInstance();
+    }
+    //    [End]:getFirebaseAuthInstance()
 
     //    [Start]:getters and setters for user object
     public User getUser() {

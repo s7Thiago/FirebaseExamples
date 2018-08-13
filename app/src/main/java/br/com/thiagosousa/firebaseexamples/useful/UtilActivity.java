@@ -112,6 +112,7 @@ public class UtilActivity extends AppCompatActivity {
 
     //    [Start]: openScreen()
     public void openScreen(Class activity) {
+        showToastShort("Opening " + activity.getName());
         startActivity(new Intent(getBaseContext(), activity));
     }
 //    [End]: openScreen()
