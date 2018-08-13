@@ -19,5 +19,6 @@
     <string name="type">Type here</string>
     <string name="send_to_database_bt">Send</string>
     <string name="database_screen_label">Database Connection</string>
+    <string name="no_action_attirbuted">No action attributed</string>
 
 </resources>
