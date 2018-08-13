@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Para a tela de lista customizada-->
+    <array name="categorias_reciclaveis">
+        <item>@drawable/baterias</item>
+        <item>@drawable/eletronicos</item>
+        <item>@drawable/metais</item>
+        <item>@drawable/organicos</item>
+        <item>@drawable/outros</item>
+        <item>@drawable/papeis</item>
+        <item>@drawable/plasticos</item>
+        <item>@drawable/vidros</item>
+    </array>
+
+    <!--Para a tela de lista customizada-->
+    <array name="residuos">
+        <item>@drawable/residue_batery</item>
+        <item>@drawable/residue_book</item>
+        <item>@drawable/residue_cardboard</item>
+        <item>@drawable/residue_clothes</item>
+        <item>@drawable/residue_domestic_eletronics</item>
+        <item>@drawable/residue_food</item>
+        <item>@drawable/residue_glass_botles</item>
+        <item>@drawable/residue_lamp</item>
+        <item>@drawable/residue_medicine</item>
+        <item>@drawable/residue_metals</item>
+        <item>@drawable/residue_plastic</item>
+        <item>@drawable/residue_tire</item>
+
+    </array>
+
+</resources>

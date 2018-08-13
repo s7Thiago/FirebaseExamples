@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--ImageView para a representacao principal do residuo-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/residue_representation"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--TextView para o nome do residuo-->
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/residue_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="name"
+        app:layout_constraintBottom_toBottomOf="@id/residue_representation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/residue_representation" />
+
+    <!--TextView que mostra se o item se refere a um material reciclavel-->
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/residue_reciclable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="reciclable?"
+        app:layout_constraintLeft_toRightOf="@id/residue_category"
+        app:layout_constraintRight_toLeftOf="@id/residue_category"
+        app:layout_constraintTop_toBottomOf="@id/residue_category" />
+
+    <!--ImageView para representar a categoria do residuo-->
+    <ImageView
+        android:id="@+id/residue_category"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_margin="10dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="@id/residue_representation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/residue_representation" />
+
+</android.support.constraint.ConstraintLayout>
