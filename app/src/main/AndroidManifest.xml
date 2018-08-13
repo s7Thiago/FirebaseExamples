@@ -43,7 +43,10 @@
             android:label="@string/database_screen_label" />
         <activity android:name=".activitys.SpinnerActivity" />
         <activity
-            android:label="Material classification" android:name=".activitys.CustomListActivity"></activity>
+            android:name=".activitys.CustomListActivity"
+            android:label="Material classification"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activitys.ResiduoDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -7,8 +7,8 @@
     <!--ImageView para a representacao principal do residuo-->
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/residue_representation"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_margin="10dp"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginStart="8dp"
         android:text="name"
         app:layout_constraintBottom_toBottomOf="@id/residue_representation"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/residue_representation"
         app:layout_constraintTop_toTopOf="@id/residue_representation" />
 
     <!--TextView que mostra se o item se refere a um material reciclavel-->
@@ -31,6 +32,7 @@
         android:id="@+id/residue_reciclable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_margin="10dp"
         android:text="reciclable?"
         app:layout_constraintLeft_toRightOf="@id/residue_category"
@@ -40,8 +42,8 @@
     <!--ImageView para representar a categoria do residuo-->
     <ImageView
         android:id="@+id/residue_category"
-        android:layout_width="100px"
-        android:layout_height="100px"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="@id/residue_representation"
