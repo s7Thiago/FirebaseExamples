@@ -60,17 +60,29 @@ public class ResiduoDetailActivity extends AppCompatActivity {
 //            recebendo um objeto residuo com implementecao de parcelable
             Residuo residuo = intent.getParcelableExtra("residuo");
             if (residuo != null){
-                residuo.setRepresentacao(intent.getIntExtra("representacao",0 ));
-
                 Objects.requireNonNull(getSupportActionBar()).setTitle(residuo.getNome());
-                residuoRepresentation.setImageDrawable(residueRepresentationsArray.getDrawable(residuo.getRepresentacao()));
-                resuduoCategory.setImageDrawable(residueCategoryArray.getDrawable(residuo.getCategoria()));
-                resuduoIsReciclable.setText(residuo.isReciclavel()? "RECICLÁVEL" : "NÃO RECICLÁVEL");
+
+                residuoRepresentation
+                        .setImageDrawable(residueRepresentationsArray
+                                .getDrawable(residuo.getRepresentacao()));
+
+                resuduoCategory
+                        .setImageDrawable(residueCategoryArray
+                                .getDrawable(residuo.getCategoria()));
+
+                resuduoIsReciclable
+                        .setText(residuo.isReciclavel()? "RECICLÁVEL" : "NÃO RECICLÁVEL");
             }else {
                 Log.w(RESIDUODETAILACTIVITYTAG, "Nenhum dado recebido para preencher esta tela");
-                residuoRepresentation.setImageDrawable(getDrawable(R.drawable.firebase_logo));
-                resuduoCategory.setImageDrawable(getDrawable(R.drawable.firebase_logo));
-                resuduoIsReciclable.setText("NADA RECEBIDO");
+
+                residuoRepresentation
+                        .setImageDrawable(getDrawable(R.drawable.firebase_logo));
+
+                resuduoCategory
+                        .setImageDrawable(getDrawable(R.drawable.firebase_logo));
+
+                resuduoIsReciclable
+                        .setText("NADA RECEBIDO");
             }
 
         }else{

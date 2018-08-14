@@ -78,12 +78,15 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
 
             default:
 
+                //Objeto de apoio
                 Residuo residuo = residuos.get(position);
 
-                showToastShort(residuos.get(position).getNome());
+//                Exibindo mensagem Toast com o nome do residuo
+                showToastShort(residuo.getNome());
+
                 Intent intent = new Intent(getBaseContext(), ResiduoDetailActivity.class);
 
-                intent.putExtra("representacao", residuos.get(position).getRepresentacao());
+//                Enviando por intent, o objeto com os dados que serao usados na outra tela
                 intent.putExtra("residuo", residuo);
 
                 startActivity(intent);
