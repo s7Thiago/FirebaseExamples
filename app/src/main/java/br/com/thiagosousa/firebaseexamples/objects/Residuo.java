@@ -24,6 +24,7 @@ public class Residuo implements Parcelable {
     protected Residuo(Parcel in) {
         nome = in.readString();
         categoria = in.readInt();
+        representacao = in.readInt();
         reciclavel = in.readByte() != 0;
     }
 
@@ -87,6 +88,7 @@ public class Residuo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(nome);
         dest.writeInt(categoria);
+        dest.writeInt(representacao);
         dest.writeByte((byte) (reciclavel ? 1 : 0));
     }
 }
