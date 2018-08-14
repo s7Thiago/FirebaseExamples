@@ -77,11 +77,14 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
         switch (String.valueOf(nomes[position])) {
 
             default:
+
+                Residuo residuo = residuos.get(position);
+
                 showToastShort(residuos.get(position).getNome());
                 Intent intent = new Intent(getBaseContext(), ResiduoDetailActivity.class);
 
                 intent.putExtra("representacao", residuos.get(position).getRepresentacao());
-                intent.putExtra("residuo", residuos.get(position));
+                intent.putExtra("residuo", residuo);
 
                 startActivity(intent);
 

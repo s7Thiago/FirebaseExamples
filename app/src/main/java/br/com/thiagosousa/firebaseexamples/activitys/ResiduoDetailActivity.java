@@ -52,7 +52,6 @@ public class ResiduoDetailActivity extends AppCompatActivity {
             Intent intent = getIntent();
 
 //            Preenchendo as views da tela com os dados recebidos via intent
-            Objects.requireNonNull(getSupportActionBar()).setTitle(intent.getStringExtra("nome"));
             Resources res = getApplicationContext().getResources();
 
             TypedArray residueRepresentationsArray = res.obtainTypedArray(R.array.residuos);
@@ -61,7 +60,10 @@ public class ResiduoDetailActivity extends AppCompatActivity {
 //            recebendo um objeto residuo com implementecao de parcelable
             Residuo residuo = intent.getParcelableExtra("residuo");
             if (residuo != null){
-                residuoRepresentation.setImageDrawable(residueRepresentationsArray.getDrawable(intent.getIntExtra("representacao", 0)));
+                residuo.setRepresentacao(intent.getIntExtra("representacao",0 ));
+
+                Objects.requireNonNull(getSupportActionBar()).setTitle(residuo.getNome());
+                residuoRepresentation.setImageDrawable(residueRepresentationsArray.getDrawable(residuo.getRepresentacao()));
                 resuduoCategory.setImageDrawable(residueCategoryArray.getDrawable(residuo.getCategoria()));
                 resuduoIsReciclable.setText(residuo.isReciclavel()? "RECICLÁVEL" : "NÃO RECICLÁVEL");
             }else {
