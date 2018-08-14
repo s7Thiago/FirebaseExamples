@@ -80,15 +80,8 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
                 showToastShort(residuos.get(position).getNome());
                 Intent intent = new Intent(getBaseContext(), ResiduoDetailActivity.class);
 
-                String residuoNome = residuos.get(position).getNome();
-                int residuoRepresentation = residuos.get(position).getRepresentacao();
-                int residuoCategory = residuos.get(position).getCategoria();
-                boolean isReciclable = residuos.get(position).isReciclavel();
-
-                intent.putExtra("nome", residuoNome);
-                intent.putExtra("representacao", residuoRepresentation);
-                intent.putExtra("categoria", residuoCategory);
-                intent.putExtra("isReciclavble", isReciclable);
+                intent.putExtra("representacao", residuos.get(position).getRepresentacao());
+                intent.putExtra("residuo", residuos.get(position));
 
                 startActivity(intent);
 

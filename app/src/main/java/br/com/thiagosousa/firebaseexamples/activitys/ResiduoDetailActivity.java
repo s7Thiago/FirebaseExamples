@@ -12,11 +12,12 @@ import android.widget.TextView;
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
+import br.com.thiagosousa.firebaseexamples.objects.Residuo;
 
 public class ResiduoDetailActivity extends AppCompatActivity {
     private static final String RESIDUODETAILACTIVITYTAG = "ResiduoDetail event";
 
-    private ImageView resuduoRepresentation;
+    private ImageView residuoRepresentation;
     private ImageView resuduoCategory;
     private TextView resuduoIsReciclable;
 
@@ -35,7 +36,7 @@ public class ResiduoDetailActivity extends AppCompatActivity {
 
         if (init) {
 
-            resuduoRepresentation = findViewById(R.id.image_residuo_Detail_representation);
+            residuoRepresentation = findViewById(R.id.image_residuo_Detail_representation);
             resuduoCategory = findViewById(R.id.image_residuo_Detail_category);
             resuduoIsReciclable = findViewById(R.id.texto_detail_residuo_reciclavel);
 
@@ -57,18 +58,20 @@ public class ResiduoDetailActivity extends AppCompatActivity {
             TypedArray residueRepresentationsArray = res.obtainTypedArray(R.array.residuos);
             TypedArray residueCategoryArray = res.obtainTypedArray(R.array.categorias_reciclaveis);
 
-            resuduoRepresentation
-                    .setImageDrawable(residueRepresentationsArray.getDrawable(intent.getIntExtra("representacao", 0)));
+//            recebendo um objeto residuo com implementecao de parcelable
+            Residuo residuo = intent.getParcelableExtra("residuo");
+            if (residuo != null){
+                residuoRepresentation.setImageDrawable(residueRepresentationsArray.getDrawable(intent.getIntExtra("representacao", 0)));
+                resuduoCategory.setImageDrawable(residueCategoryArray.getDrawable(residuo.getCategoria()));
+                resuduoIsReciclable.setText(residuo.isReciclavel()? "RECICLÁVEL" : "NÃO RECICLÁVEL");
+            }else {
+                Log.w(RESIDUODETAILACTIVITYTAG, "Nenhum dado recebido para preencher esta tela");
+                residuoRepresentation.setImageDrawable(getDrawable(R.drawable.firebase_logo));
+                resuduoCategory.setImageDrawable(getDrawable(R.drawable.firebase_logo));
+                resuduoIsReciclable.setText("NADA RECEBIDO");
+            }
 
-            resuduoCategory
-                    .setImageDrawable(residueCategoryArray.getDrawable(intent.getIntExtra("categoria", 0)));
-
-            resuduoIsReciclable
-                    .setText(intent.getBooleanExtra("isReciclavble", false)? "RECICLÁVEL" : "NÃO \nRECICLÁVEL");
-
-
-
-        }else {
+        }else{
             Log.w(RESIDUODETAILACTIVITYTAG, "A atualização dos componentes desta tela está desativada");
         }
     }
