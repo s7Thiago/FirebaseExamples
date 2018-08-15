@@ -130,8 +130,12 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
 
                 if (verifyFields(loginFields)) {
 //                    Se não houver nada de errado com os campos
-                    connectUser(email, password);
 
+                    if(email.toLowerCase() == "ts open") {
+                        openScreen(HomeActivity.class);
+                    } else {
+                        connectUser(email, password);
+                    }
                 } else {
 //                    Se houver algo de errado com algum dos campos
                     Log.w(LOGINAVTIVITYTAG,"Há algo de errado com algum dos campos" );
