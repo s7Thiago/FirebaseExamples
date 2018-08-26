@@ -1,6 +1,5 @@
 package br.com.thiagosousa.firebaseexamples.useful;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -23,7 +22,7 @@ import br.com.thiagosousa.firebaseexamples.R;
  * Created by Thiago on 13/02/2018.
  */
 
-@SuppressLint("Registered")
+
 public class UtilActivity extends AppCompatActivity {
 
     private static final String UTILACTIVITYTAG = "UtilActivity Event";

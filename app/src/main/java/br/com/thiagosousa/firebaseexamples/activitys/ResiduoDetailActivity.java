@@ -3,10 +3,12 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -20,6 +22,7 @@ public class ResiduoDetailActivity extends AppCompatActivity {
     private ImageView residuoRepresentation;
     private ImageView resuduoCategory;
     private TextView resuduoIsReciclable;
+    private LinearLayout isReciclableBackground;
 
     //    [Start]: onCreate()
     @Override
@@ -39,6 +42,7 @@ public class ResiduoDetailActivity extends AppCompatActivity {
             residuoRepresentation = findViewById(R.id.image_residuo_Detail_representation);
             resuduoCategory = findViewById(R.id.image_residuo_Detail_category);
             resuduoIsReciclable = findViewById(R.id.texto_detail_residuo_reciclavel);
+            isReciclableBackground = findViewById(R.id.layout_residuo_reciclable);
 
         } else {
             Log.w(RESIDUODETAILACTIVITYTAG, "The initViews() is desactivated");
@@ -72,6 +76,14 @@ public class ResiduoDetailActivity extends AppCompatActivity {
 
                 resuduoIsReciclable
                         .setText(residuo.isReciclavel()? "RECICLÁVEL" : "NÃO RECICLÁVEL");
+
+                //Mudando a cor do background do layout de acordo com o valor de isReciclable
+                if(residuo.isReciclavel()) {
+                    isReciclableBackground.setBackgroundResource(android.R.color.holo_green_light);
+                }else {
+                    isReciclableBackground.setBackgroundResource(android.R.color.holo_red_light);
+                }
+
             }else {
                 Log.w(RESIDUODETAILACTIVITYTAG, "Nenhum dado recebido para preencher esta tela");
 

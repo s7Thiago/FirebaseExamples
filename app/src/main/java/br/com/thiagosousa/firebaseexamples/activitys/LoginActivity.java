@@ -2,7 +2,9 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,8 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
     private Button loginButton;
     private TextInputEditText emailField;
     private TextInputEditText passwordField;
+    private ConstraintLayout mainLoginConstraintLayout;
+    private AnimationDrawable animationDrawable;
 
     //    [Start]: onCreate method
     @Override
@@ -29,6 +33,7 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
         setContentView(R.layout.activity_login);
         initViews(true);
         configureScreen(true);
+        playScreenAnimation(false);
 
     }
 //    [End]: onCreate method
@@ -41,6 +46,7 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
             emailField = findViewById(R.id.email_field_for_login);
             passwordField = findViewById(R.id.password_field_for_login);
             loginButton = findViewById(R.id.signInButton);
+            mainLoginConstraintLayout = findViewById(R.id.main_login_constraint_layout);
 
         } else {
 //            if init is false, do nothing
@@ -131,7 +137,7 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
                 if (verifyFields(loginFields)) {
 //                    Se não houver nada de errado com os campos
 
-                    if(email.toLowerCase() == "ts open") {
+                    if((email.toLowerCase()).equals("ts open")) {
                         openScreen(HomeActivity.class);
                     } else {
                         connectUser(email, password);
@@ -185,5 +191,20 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
         super.onRestoreInstanceState(savedInstanceState);
     }
     //[End]: onRestoreInstanceState()
+
+//    [Start]: playScreenAnimation()
+    public void playScreenAnimation(boolean load) {
+        if (load) {
+            //inicia a animacao da tela
+            mainLoginConstraintLayout.setBackgroundResource(R.drawable.bg_login_screen_animation);
+            animationDrawable = (AnimationDrawable) mainLoginConstraintLayout.getBackground();
+            animationDrawable.setEnterFadeDuration(4000);
+            animationDrawable.setExitFadeDuration(4000);
+            animationDrawable.start();
+        }else {
+            Log.w(LOGINAVTIVITYTAG, "playScreenAnimation() were called, but is desactivated");
+        }
+    }
+//    [End]: playScreenAnimation()
 
 }

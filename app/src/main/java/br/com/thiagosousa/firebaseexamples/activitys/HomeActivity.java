@@ -100,8 +100,26 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
-                Snackbar.make(view, "Bem-vindo(a), " + Objects.requireNonNull(mAuth.getCurrentUser()).getEmail(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                if (mAuth.getCurrentUser() != null) {
+                    Snackbar
+                            .make(view,
+                                    "Bem-vindo(a), " + Objects
+                                            .requireNonNull(mAuth
+                                                    .getCurrentUser())
+                                            .getEmail(),
+                                    Snackbar
+                                            .LENGTH_LONG)
+                            .setAction("Action", null)
+                            .show();
+                } else {
+                    Snackbar
+                            .make(view, "No one logged in!",
+                                    Snackbar
+                                            .LENGTH_LONG)
+                            .setAction("Action", null)
+                            .show();
+                }
                 break;
             default:
                 Log.w(HOMEACTIVITYTAG, "View clicked is have not a registered action in HOMEACTIVITY");
