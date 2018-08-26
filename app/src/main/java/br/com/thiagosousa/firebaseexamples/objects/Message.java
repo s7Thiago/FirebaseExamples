@@ -4,21 +4,16 @@ public class Message {
 
     private String messageContent;
     private String hora;
+    private String responsavel;
 
     //Necessário para o Firebase Database
     public Message() {
     }
 
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public Message(String messageContent) {
+    public Message(String messageContent, String hora, String responsavel) {
         this.messageContent = messageContent;
+        this.hora = hora;
+        this.responsavel = responsavel;
     }
 
     public String getMessageContent() {
@@ -29,4 +24,21 @@ public class Message {
     public void setMessageContent(String messageContent) {
         this.messageContent = messageContent;
     }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
+    }
+
 }

@@ -1,20 +1,26 @@
 package br.com.thiagosousa.firebaseexamples.activitys;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
-import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
+import br.com.thiagosousa.firebaseexamples.adapter.MessageAdapter;
+import br.com.thiagosousa.firebaseexamples.objects.Message;
 import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
 public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements View.OnClickListener {
@@ -23,6 +29,7 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
     private Button sendToDatabaseButton;
     private TextInputEditText contentData;
     private TextView message_textview;
+    private ListView messages_listView;
 
     //    [Start]:onCreate()
     @Override
@@ -38,6 +45,47 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
         mAuth = FirebaseAuth.getInstance();
     }
 //    [End]:onCreate()
+
+    //    [Start]:onStart()
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadMessagesFromFirebaseDatabase();
+
+    }
+    //    [End]:onStart()
+
+
+    //    [Start]:loadMessagesFromFirebaseDatabase()
+    public void loadMessagesFromFirebaseDatabase(){
+
+        //Capturando as mensagens no banco de dados e adicionando a uma lista para serem exibidas
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Message> messagesList = new ArrayList<Message>();
+
+//                Limpando a lista antes de popular
+                messagesList.clear();
+
+//                Populando a lista com as mensagens do banco de dados
+                for(DataSnapshot messageSnapshot: dataSnapshot.getChildren()){
+                    Message message = messageSnapshot.getValue(Message.class);
+                    messagesList.add(message);
+                }
+
+//                Configurando a lista para exibir as ultimas mensagens
+                MessageAdapter adapter = new MessageAdapter(getBaseContext(), messagesList);
+                messages_listView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                showToastShort("Operação Cancelada");
+            }
+        });
+    }
+    //    [End]:loadMessagesFromFirebaseDatabase()
 
     //    [Start]: onRestoreInstanceState()
     @Override
@@ -96,6 +144,7 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
             sendToDatabaseButton = findViewById(R.id.send_to_database_button);
             contentData = findViewById(R.id.database_message_field);
             message_textview = findViewById(R.id.database_messag_textview);
+            messages_listView = findViewById(R.id.database_activity_listview);
 
         } else {
             Log.w(TAGFIREBASEDATABASEACTIVITY, "initViews() is desactivated in FIREBASEDATABASEACTIVITY");
@@ -110,7 +159,7 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
             case R.id.send_to_database_button:
                 if(!isEmptyField(contentData)) {
                     Log.w(TAGFIREBASEDATABASEACTIVITY, "send_to_database_button is clicked");
-                    String mMessage = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail() + "\n" + contentData.getText().toString();
+                    String mMessage = Objects.requireNonNull(contentData.getText().toString());
                     Log.i(TAGFIREBASEDATABASEACTIVITY, "Sending message_textview: " + mMessage);
                     sendMessageToDatabase(mMessage);
 

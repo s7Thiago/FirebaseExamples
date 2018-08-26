@@ -6,11 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".activitys.FirebaseDatabaseActivity">
 
+    <ListView
+        android:id="@+id/database_activity_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:saveEnabled="true"
         android:id="@+id/database_messag_textview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:saveEnabled="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,10 +39,10 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/database_message-field"
-                android:saveEnabled="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/type" />
+                android:hint="@string/type"
+                android:saveEnabled="true" />
 
         </android.support.design.widget.TextInputLayout>
 

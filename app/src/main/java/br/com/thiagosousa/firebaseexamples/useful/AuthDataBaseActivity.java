@@ -11,6 +11,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.objects.Message;
@@ -24,7 +27,7 @@ public class AuthDataBaseActivity extends AuthActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     //    reference location for written
-    DatabaseReference mRef = database.getReference("messages");
+    protected DatabaseReference mRef = database.getReference("messages");
     private String messageID;
 
     //[Start]: sendMessageToDatabase()
@@ -35,7 +38,7 @@ public class AuthDataBaseActivity extends AuthActivity {
         messageID = mRef.push().getKey();
 
         //Criando um objeto Message
-        Message mMessage = new Message(message);
+        Message mMessage = new Message(message, new SimpleDateFormat("dd/MM/yyyy").format(new Date()), mAuth.getCurrentUser().getEmail());
 
         //Enviando para o nó 'messages' usando o respectivo ID
         mRef.child(messageID).setValue(mMessage);
