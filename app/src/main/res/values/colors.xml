@@ -6,4 +6,5 @@
     <color name="colorAccent">#39796b</color>
     <color name="colorHint">#94c4ba</color>
     <color name="white">#ffffff</color>
+    <color name="light_gray">#b7b7b7</color>
 </resources>
