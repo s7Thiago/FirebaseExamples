@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/main_login_constraint_layout"
     android:layout_height="match_parent"
     tools:context="br.com.thiagosousa.firebaseexamples.activitys.LoginActivity">
 
@@ -29,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/email_field_for_login"
-                android:background="@drawable/selector_edidtext_login"
+                android:background="@drawable/selector_edittext_square_black"
                 android:drawableEnd="@drawable/mail_outline_black_18x18"
                 android:hint="@string/hint_email_field"
                 android:inputType="textEmailAddress"
@@ -49,7 +50,7 @@
                 android:drawableEnd="@drawable/lock_outline_black_18x18"
                 android:hint="@string/hint_password_field"
                 android:inputType="textPassword"
-                android:background="@drawable/selector_edidtext_login"
+                android:background="@drawable/selector_edittext_square_black"
                 android:padding="10dp" />
 
         </android.support.design.widget.TextInputLayout>
