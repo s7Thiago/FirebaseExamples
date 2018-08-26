@@ -29,4 +29,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="messages_screen_theme" parent="AppTheme">
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+    </style>
+
 </resources>

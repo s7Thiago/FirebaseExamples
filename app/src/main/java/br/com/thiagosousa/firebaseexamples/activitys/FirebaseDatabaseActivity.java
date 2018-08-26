@@ -77,6 +77,9 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
 //                Configurando a lista para exibir as ultimas mensagens
                 MessageAdapter adapter = new MessageAdapter(getBaseContext(), messagesList);
                 messages_listView.setAdapter(adapter);
+
+//                Colocando o scroll do listview na ultima posicao para exibir a mensagem mais recente
+                messages_listView.setSelection(messagesList.size());
             }
 
             @Override

@@ -10,9 +10,9 @@
         android:id="@+id/database_activity_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@id/messages_input_container"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/database_messag_textview"
@@ -21,8 +21,10 @@
         android:saveEnabled="true" />
 
     <LinearLayout
+        android:id="@+id/messages_input_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
@@ -41,8 +43,13 @@
                 android:id="@+id/database_message-field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_edidtext_login"
                 android:hint="@string/type"
-                android:saveEnabled="true" />
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:saveEnabled="true"
+                android:textColorHint="@android:color/holo_green_light" />
 
         </android.support.design.widget.TextInputLayout>
 
