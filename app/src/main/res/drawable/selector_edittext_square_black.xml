@@ -4,8 +4,8 @@
 
     <item android:state_enabled="true"
         android:state_focused="true"
-        android:drawable="@drawable/ediitext_login_selected"/>
+        android:drawable="@drawable/selector_edidtext_login"/>
 
-    <item android:drawable="@drawable/edittext_login_normal"/>
+    <item android:drawable="@drawable/selector_edidtext_login"/>
 
 </selector>
