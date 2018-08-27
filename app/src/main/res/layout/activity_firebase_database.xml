@@ -7,10 +7,10 @@
     tools:context=".activitys.FirebaseDatabaseActivity">
 
     <ListView
+        android:divider="@android:color/transparent"
         android:id="@+id/database_activity_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@id/messages_input_container"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -24,10 +24,10 @@
         android:id="@+id/messages_input_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
+        android:background="@android:color/transparent"
         android:paddingEnd="@dimen/fab_margin"
         android:paddingStart="@dimen/fab_margin"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/selector_edidtext_login"
+                android:background="@drawable/selector_edittext_green"
                 android:hint="@string/type"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"

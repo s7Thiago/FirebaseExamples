@@ -39,9 +39,10 @@
                 android:value="br.com.thiagosousa.firebaseexamples.useful.UtilActivity" />
         </activity>
         <activity
-            android:theme="@style/messages_screen_theme"
             android:name=".activitys.FirebaseDatabaseActivity"
-            android:label="@string/database_screen_label" />
+            android:label="@string/database_screen_label"
+            android:screenOrientation="portrait"
+            android:theme="@style/messages_screen_theme" />
         <activity android:name=".activitys.SpinnerActivity" />
         <activity
             android:name=".activitys.CustomListActivity"
