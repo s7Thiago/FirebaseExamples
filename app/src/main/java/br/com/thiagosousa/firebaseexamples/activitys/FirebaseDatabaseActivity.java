@@ -30,6 +30,7 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
     private TextInputEditText contentData;
     private TextView message_textview;
     private ListView messages_listView;
+    private List<Message> messagesList = new ArrayList<Message>();
 
     //    [Start]:onCreate()
     @Override
@@ -52,6 +53,9 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
         super.onStart();
         loadMessagesFromFirebaseDatabase();
 
+//        Ocultando a actionbar
+        getSupportActionBar().hide();
+
     }
     //    [End]:onStart()
 
@@ -63,7 +67,6 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<Message> messagesList = new ArrayList<Message>();
 
 //                Limpando a lista antes de popular
                 messagesList.clear();
@@ -166,6 +169,9 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
                     Log.i(TAGFIREBASEDATABASEACTIVITY, "Sending message_textview: " + mMessage);
                     sendMessageToDatabase(mMessage);
 
+//                    Limpando o campo
+                    contentData.setText("");
+
                     //Atualizando a tela com o estado atual do Banco de dados
                     updateUI(message_textview);
                 }else{
@@ -174,11 +180,4 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
                 break;
         }
     }
-
-   /* public void sendToDatabase(View view) {
-        Log.w(TAGFIREBASEDATABASEACTIVITY, "send_to_database_button is clicked");
-        String mMessage = contentData.getText().toString();
-        Log.i(TAGFIREBASEDATABASEACTIVITY, "Sending message_textview: " + message_textview);
-        sendMessageToDatabase(mMessage);
-    }*/
 }
