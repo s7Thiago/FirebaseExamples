@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/selector_edittext_green"
+                android:background="@drawable/selector_edittext_shapes"
                 android:hint="@string/type"
                 android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
