@@ -1,13 +1,16 @@
 package br.com.thiagosousa.firebaseexamples.objects;
 
-public class Person {
-    private String name;
-    private String lastName;
-    private String cpf;
-    private String phone_number;
-    private String birthday;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    public Person() {
+public class Person implements Parcelable{
+    protected String name;
+    protected String lastName;
+    protected String cpf;
+    protected String phone_number;
+    protected String birthday;
+
+    public Person(){
 
     }
 
@@ -35,6 +38,26 @@ public class Person {
         this.phone_number = phone_number;
     }
 //    [End]: Person()
+
+    protected Person(Parcel in) {
+        name = in.readString();
+        lastName = in.readString();
+        cpf = in.readString();
+        phone_number = in.readString();
+        birthday = in.readString();
+    }
+
+    public static final Creator<Person> CREATOR = new Creator<Person>() {
+        @Override
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
 
     //[Start]: Getters() and Setters()
     public String getName() {
@@ -75,6 +98,20 @@ public class Person {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(lastName);
+        dest.writeString(cpf);
+        dest.writeString(phone_number);
+        dest.writeString(birthday);
     }
 //[End]: Getters() and Setters()
 

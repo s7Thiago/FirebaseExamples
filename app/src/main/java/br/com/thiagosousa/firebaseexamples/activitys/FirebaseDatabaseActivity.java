@@ -30,7 +30,7 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
     private TextInputEditText contentData;
     private TextView message_textview;
     private ListView messages_listView;
-    private List<Message> messagesList = new ArrayList<Message>();
+    private List<Message> messagesList = new ArrayList<>();
 
     //    [Start]:onCreate()
     @Override
@@ -64,7 +64,7 @@ public class FirebaseDatabaseActivity extends AuthDataBaseActivity implements Vi
     public void loadMessagesFromFirebaseDatabase(){
 
         //Capturando as mensagens no banco de dados e adicionando a uma lista para serem exibidas
-        mRef.addValueEventListener(new ValueEventListener() {
+        messagesReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

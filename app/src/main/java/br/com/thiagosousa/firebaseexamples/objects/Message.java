@@ -1,6 +1,9 @@
 package br.com.thiagosousa.firebaseexamples.objects;
 
-public class Message {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Message implements Parcelable{
 
     private String messageContent;
     private String hora;
@@ -15,6 +18,24 @@ public class Message {
         this.hora = hora;
         this.responsavel = responsavel;
     }
+
+    protected Message(Parcel in) {
+        messageContent = in.readString();
+        hora = in.readString();
+        responsavel = in.readString();
+    }
+
+    public static final Creator<Message> CREATOR = new Creator<Message>() {
+        @Override
+        public Message createFromParcel(Parcel in) {
+            return new Message(in);
+        }
+
+        @Override
+        public Message[] newArray(int size) {
+            return new Message[size];
+        }
+    };
 
     public String getMessageContent() {
 
@@ -41,4 +62,15 @@ public class Message {
         this.responsavel = responsavel;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(messageContent);
+        dest.writeString(hora);
+        dest.writeString(responsavel);
+    }
 }

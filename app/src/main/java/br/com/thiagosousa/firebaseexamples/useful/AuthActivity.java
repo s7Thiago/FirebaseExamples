@@ -40,21 +40,25 @@ public class AuthActivity extends UtilActivity {
 //    [End]: updateUI()
 
     //    [Start]: newUser()
-    public void newUser(String email, String password) {
+    public void newUser(final User user) {
 
         showProgressDialog(true);
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(AUTHACTICITYTAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+//                            Escrevendo os dados obtidos no banco de dados
+                            AuthDataBaseActivity dataBaseOperation = new AuthDataBaseActivity();
+                            dataBaseOperation.writeUserInDatabase(user);
 
                             showProgressDialog(false);
-                            updateUI(user);
+                            updateUI(firebaseUser);
                             openScreen(HomeActivity.class);
                             finish();
                         } else {

@@ -1,10 +1,11 @@
 package br.com.thiagosousa.firebaseexamples.useful;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,11 +13,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.objects.Message;
+import br.com.thiagosousa.firebaseexamples.objects.User;
 
 @SuppressLint("Registered")
 public class AuthDataBaseActivity extends AuthActivity {
@@ -27,42 +28,45 @@ public class AuthDataBaseActivity extends AuthActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     //    reference location for written
-    protected DatabaseReference mRef = database.getReference("messages");
+    protected DatabaseReference messagesReference = database.getReference("Messages");
+    protected DatabaseReference usersReference = database.getReference("Users");
     private String messageID;
+    private String userID;
+    protected  User currentUserOfDatabase;
 
     //[Start]: sendMessageToDatabase()
     public void sendMessageToDatabase(String message) {
 
         //Criando um novo nó para a nova mensagem
         //O novo nó ficará em /message/messageID
-        messageID = mRef.push().getKey();
+        messageID = messagesReference.push().getKey();
 
         //Criando um objeto Message
         Message mMessage = new Message(message, new SimpleDateFormat("dd/MM/yyyy").format(new Date()), mAuth.getCurrentUser().getEmail());
 
         //Enviando para o nó 'messages' usando o respectivo ID
-        mRef.child(messageID).setValue(mMessage);
+        messagesReference.child(messageID).setValue(mMessage);
 
         //Mostrando status ao usuário
         showToastShort("Posting in database: " + message);
     }
 //[End]: sendMessageToDatabase()
 
-// [Start]: sendMessageToDatabase() with custom reference
+    // [Start]: sendMessageToDatabase() with custom reference
     public void sendMessageToDatabase(String reference, String message) {
-        mRef = database.getReference(reference);
-        mRef.setValue(message);
+        messagesReference = database.getReference(reference);
+        messagesReference.setValue(message);
         showToastShort("Posting in database: " + message);
     }
 //[End]: sendMessageToDatabase() with custom reference
 
-//[Start]:updateUI()
+    //[Start]:updateUI()
     public void updateUI(final TextView messageView) {
 
         Log.w(TAGAUTHDATABASEACTIVITY, "AuthDatabaseActivity updateUI() foi invocado");
 
         //Decide o que fazer quando é detectada uma mudança na estrutura dos dados
-        mRef.child(messageID).addValueEventListener(new ValueEventListener() {
+        messagesReference.child(messageID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Recupera o novo dado em um objeto Message e inere num textview
@@ -73,7 +77,7 @@ public class AuthDataBaseActivity extends AuthActivity {
 
                 messageView.setText(message_received);
 
-                Log.w(TAGAUTHDATABASEACTIVITY,"Mensagem recuperada: \n\n" + message_received );
+                Log.w(TAGAUTHDATABASEACTIVITY, "Mensagem recuperada: \n\n" + message_received);
             }
 
             @Override
@@ -84,5 +88,94 @@ public class AuthDataBaseActivity extends AuthActivity {
         });
     }
 //[End]:updateUI()
+
+    //[Start]:getters and setters
+    public User getCurrentUserOfDatabase() {
+        return currentUserOfDatabase;
+    }
+
+    public void setCurrentUserOfDatabase(User currentUserOfDatabase) {
+        this.currentUserOfDatabase = currentUserOfDatabase;
+    }
+//[End]:getters and setters
+
+    // [Start]:writeUserInDatabase()
+    public void writeUserInDatabase(User user) {
+
+//        Pegando um id para o user que será salvo
+        userID = usersReference.push().getKey();
+
+//        Salvando as informacoes de um user no banco de dados
+        usersReference.child(userID).setValue(user);
+    }
+// [End]:writeUserInDatabase()
+
+    // [Start]:getCurrentUserFromDatabase()
+    public User getCurrentUserFromDatabase() {
+
+        //Extraindo a ramificacao que contem os dados do atual usuario
+        usersReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+
+                    User userAux = userSnapshot.getValue(User.class);
+
+                    Log.i(TAGAUTHDATABASEACTIVITY, "Usuario recebido: " + userAux.toString());
+
+                    if ((mAuth.getCurrentUser().getEmail()).equals(userAux.getEmail())) {
+
+                        setCurrentUserOfDatabase(userAux);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return getCurrentUserOfDatabase();
+    }
+// [End]:getCurrentUserFromDatabase()
+
+    //[Start]: showUserNameInActionBar()
+    public void showUserNameInActionBar(boolean show) {
+
+        if(show) {
+            usersReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    for(DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        User user = userSnapshot.getValue(User.class);
+                        Log.i(TAGAUTHDATABASEACTIVITY, "Usuario recebido: " + user.toString());
+
+                        if((user.getEmail()).equals(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())) {
+                            getSupportActionBar().setTitle(user.isAdmin() ? "Admin " + user.getName(): user.getName());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+/*//           Inserindo o nome do usuario autenticado na barra de acao precedido de admin, se for administrador
+            AuthDataBaseActivity mAuthDataBaseActivity = new AuthDataBaseActivity();
+            User user = mAuthDataBaseActivity.getCurrentUserFromDatabase();
+
+            Log.w(HOMEACTIVITYTAG, "showUserNameInActionBar()\nDados recebidos\n" + user.toString());
+            getSupportActionBar().setTitle(user.isAdmin() ? "Admin " + user.getName() : user.getName());*/
+        } else {
+            Log.w(TAGAUTHDATABASEACTIVITY, "O nome de usuario não está sendo exibido na actionbar");
+        }
+
+    }
+//[End]: showUserNameInActionBar()
 
 }

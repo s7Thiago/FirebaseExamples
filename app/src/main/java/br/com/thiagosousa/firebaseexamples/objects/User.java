@@ -1,15 +1,27 @@
 package br.com.thiagosousa.firebaseexamples.objects;
 
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-public class User extends Person {
+public class User extends Person implements Parcelable{
 
     private String username;
     private String password;
     private String email;
+    private boolean admin;
 
     //    [Start]: User()
     public User() {
+    }
+//    [End]: User()
+
+    //    [Start]: User()
+    public User(String name,String lastname,String email,String password, boolean admin) {
+        this.name = name;
+        this.lastName = lastname;
+        this.email = email;
+        this.password = password;
+        this.admin = admin;
     }
 //    [End]: User()
 
@@ -61,5 +73,23 @@ public class User extends Person {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 //    [End]: Getters() and Setters()
+
+
+    @Override
+    public String toString() {
+        return String.valueOf(new StringBuilder()
+                .append("Nome: " + this.getName())
+                .append("Sobrenome: " + this.getLastName())
+                .append("Email: " + this.getEmail())
+                .append("Senha: " + this.getPassword()));
+    }
 }

@@ -2,6 +2,7 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
@@ -14,9 +15,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
+import br.com.thiagosousa.firebaseexamples.objects.User;
 import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
 public class HomeActivity extends AuthDataBaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -48,6 +54,9 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     @Override
     protected void onStart() {
         super.onStart();
+
+//        Inserindo o nome do atual usuario na actionbar, precedido de admin se o mesmo for
+        showUserNameInActionBar(true);
 
     }
 //[End]: onStart()
