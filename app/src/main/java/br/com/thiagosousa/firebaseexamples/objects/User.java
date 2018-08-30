@@ -88,8 +88,8 @@ public class User extends Person implements Parcelable{
     public String toString() {
         return String.valueOf(new StringBuilder()
                 .append("Nome: " + this.getName())
-                .append("Sobrenome: " + this.getLastName())
-                .append("Email: " + this.getEmail())
-                .append("Senha: " + this.getPassword()));
+                .append("\nSobrenome: " + this.getLastName())
+                .append("\nEmail: " + this.getEmail())
+                .append("\nSenha: " + this.getPassword()));
     }
 }

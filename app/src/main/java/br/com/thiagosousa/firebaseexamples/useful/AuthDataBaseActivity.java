@@ -110,37 +110,6 @@ public class AuthDataBaseActivity extends AuthActivity {
     }
 // [End]:writeUserInDatabase()
 
-    // [Start]:getCurrentUserFromDatabase()
-    public User getCurrentUserFromDatabase() {
-
-        //Extraindo a ramificacao que contem os dados do atual usuario
-        usersReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-
-                    User userAux = userSnapshot.getValue(User.class);
-
-                    Log.i(TAGAUTHDATABASEACTIVITY, "Usuario recebido: " + userAux.toString());
-
-                    if ((mAuth.getCurrentUser().getEmail()).equals(userAux.getEmail())) {
-
-                        setCurrentUserOfDatabase(userAux);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        return getCurrentUserOfDatabase();
-    }
-// [End]:getCurrentUserFromDatabase()
-
     //[Start]: showUserNameInActionBar()
     public void showUserNameInActionBar(boolean show) {
 
@@ -151,10 +120,14 @@ public class AuthDataBaseActivity extends AuthActivity {
 
                     for(DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                         User user = userSnapshot.getValue(User.class);
-                        Log.i(TAGAUTHDATABASEACTIVITY, "Usuario recebido: " + user.toString());
+                        Log.i(TAGAUTHDATABASEACTIVITY, "showUserNameInActionBar(): Usuario recebido: " + user.toString());
 
                         if((user.getEmail()).equals(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())) {
+                            setCurrentUserOfDatabase(user);
                             getSupportActionBar().setTitle(user.isAdmin() ? "Admin " + user.getName(): user.getName());
+
+                            Log.i(TAGAUTHDATABASEACTIVITY, "\n\nshowUserNameInActionBar(): Usuario ativo:" +
+                                    getCurrentUserOfDatabase().toString());
                         }
                     }
                 }
@@ -164,17 +137,9 @@ public class AuthDataBaseActivity extends AuthActivity {
 
                 }
             });
-
-/*//           Inserindo o nome do usuario autenticado na barra de acao precedido de admin, se for administrador
-            AuthDataBaseActivity mAuthDataBaseActivity = new AuthDataBaseActivity();
-            User user = mAuthDataBaseActivity.getCurrentUserFromDatabase();
-
-            Log.w(HOMEACTIVITYTAG, "showUserNameInActionBar()\nDados recebidos\n" + user.toString());
-            getSupportActionBar().setTitle(user.isAdmin() ? "Admin " + user.getName() : user.getName());*/
         } else {
             Log.w(TAGAUTHDATABASEACTIVITY, "O nome de usuario não está sendo exibido na actionbar");
         }
-
     }
 //[End]: showUserNameInActionBar()
 

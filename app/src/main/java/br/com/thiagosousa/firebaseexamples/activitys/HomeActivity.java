@@ -3,6 +3,8 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
@@ -36,6 +38,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
             "Exemplos de lista (com Spinner Selector)",
             "ListView Customizado"};
     private ArrayAdapter<String> mAdapter;
+    private CoordinatorLayout rootContainer;
 
     //    [Start]: onCreate()
     @Override
@@ -70,6 +73,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
             fab = findViewById(R.id.fab);
             toolbar = findViewById(R.id.toolbar);
             homeItens = findViewById(R.id.home_listView);
+            rootContainer = findViewById(R.id.home_activity_root_container);
 
         } else {
             Log.w(HOMEACTIVITYTAG, "initViews() is desactivated in HOMEACTIVITY");
@@ -90,7 +94,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
 //            Configurando onClicks
             fab.setOnClickListener(this);
 
-            //            Initializing the firebase
+            //            Initializing the firebase 
             mAuth = getFirebaseAuthInstance();
 
 //           Setting up the ListView
@@ -164,6 +168,10 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
             case R.id.set_message_in_database:
                 sendMessageToDatabase("Olá, mundo!!!");
                 break;
+
+                case R.id.show_snackkbar_with_current_user_information:
+                    showToastShort(getCurrentUserOfDatabase().toString());
+            break;
         }
         return true;
     }
