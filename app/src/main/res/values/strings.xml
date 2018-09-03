@@ -23,5 +23,6 @@
     <string name="empty_content_msg">No content</string>
     <string name="error_register_fields_content_bad">Please, done the form with consistent data</string>
     <string name="error_confirm_password">The password fields is not equals</string>
+    <string name="title_activity_espaco_flexivel">EspacoFlexivelActivity</string>
 
 </resources>
