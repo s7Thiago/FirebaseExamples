@@ -1,5 +1,9 @@
 package br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample;
 
+/*Esta classe apresenta uma lista de telas com implementações de exemplos de técnicas de rolagem
+* com o auxílio do CoordinatorLayout, baseados em artigo que foi encontrado no endereço abaixo:
+* https://medium.com/android-dev-br/design-support-library-c2c7aebd8cb*/
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
