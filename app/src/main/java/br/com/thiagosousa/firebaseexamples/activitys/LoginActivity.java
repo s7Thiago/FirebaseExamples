@@ -15,8 +15,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
-public class LoginActivity extends AuthActivity implements View.OnClickListener {
+public class LoginActivity extends AuthDataBaseActivity implements View.OnClickListener {
     private static final String LOGINAVTIVITYTAG = "LoginAcivity event";
 
     private Button registerScreenButton;

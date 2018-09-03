@@ -2,8 +2,6 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,10 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -36,7 +30,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     private String[] itens = new String[]{
             "Interação com o Firebase Database",
             "Exemplos de lista (com Spinner Selector)",
-            "ListView Customizado"};
+            "ListView Customizado", "Gradient animation", "SharedAnimation Example", "CoordinatorLayout Example"};
     private ArrayAdapter<String> mAdapter;
     private CoordinatorLayout rootContainer;
 
@@ -61,6 +55,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
 //        Inserindo o nome do atual usuario na actionbar, precedido de admin se o mesmo for
         showUserNameInActionBar(true);
 
+        //inYourPlace(HomeActivity.class);
     }
 //[End]: onStart()
 
@@ -94,7 +89,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
 //            Configurando onClicks
             fab.setOnClickListener(this);
 
-            //            Initializing the firebase 
+            //            Initializing the firebase
             mAuth = getFirebaseAuthInstance();
 
 //           Setting up the ListView
@@ -169,9 +164,9 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
                 sendMessageToDatabase("Olá, mundo!!!");
                 break;
 
-                case R.id.show_snackkbar_with_current_user_information:
-                    showToastShort(getCurrentUserOfDatabase().toString());
-            break;
+            case R.id.show_snackkbar_with_current_user_information:
+                showToastShort(getCurrentUserOfDatabase().toString());
+                break;
         }
         return true;
     }
@@ -194,6 +189,18 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
                 openScreen(CustomListActivity.class);
                 break;
 
+            case 3:
+                openScreen(GradientBackgroundAnimActivity.class);
+                break;
+
+            case 4:
+                openScreen(SharedAnimationExample.class);
+                break;
+
+            case 5:
+                openScreen(SharedAnimationExample.class);
+                break;
+
             default:
                 Log.w(HOMEACTIVITYTAG, getResources().getString(R.string.no_action_attirbuted));
                 showToastShort(getResources().getString(R.string.no_action_attirbuted));
@@ -201,5 +208,32 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
         }
     }
     //[End]: onItemClick()
+
+    //    [Start]:inYourPlace()
+    //Se o usuario atual não for um administrador, redireciona para o lugar certo
+    public void inYourPlace(Class currentActivity) {
+        User user = getCurrentUserOfDatabase();
+
+        if (!(user.isAdmin())) {
+            finish();
+            openScreen(FirebaseDatabaseActivity.class);
+            showToastShort("You isn't admin...");
+
+            Log.w(HOMEACTIVITYTAG, "inYourPlace():\n\n" + user.getName() + " Não é um administrador." +
+                    " finalizando atividade, e redirecionando para o local esperado" + "\n\n");
+
+        } else {
+
+            if (!(currentActivity.equals(HomeActivity.class))) {
+                finish();
+                openScreen(HomeActivity.class);
+                showToastShort("Hello admin!!! :-D");
+
+                Log.w(HOMEACTIVITYTAG, "inYourPlace():\n\n" + user.getName() + " Não é um administrador." +
+                        " Abrindo tela principal" + "\n\n");
+            }
+        }
+    }
+//    [End]:inYourPlace()
 
 }

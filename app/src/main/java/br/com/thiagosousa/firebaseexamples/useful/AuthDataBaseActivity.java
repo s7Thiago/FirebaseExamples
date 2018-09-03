@@ -16,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import br.com.thiagosousa.firebaseexamples.activitys.FirebaseDatabaseActivity;
+import br.com.thiagosousa.firebaseexamples.activitys.HomeActivity;
 import br.com.thiagosousa.firebaseexamples.objects.Message;
 import br.com.thiagosousa.firebaseexamples.objects.User;
 
@@ -32,7 +34,7 @@ public class AuthDataBaseActivity extends AuthActivity {
     protected DatabaseReference usersReference = database.getReference("Users");
     private String messageID;
     private String userID;
-    protected  User currentUserOfDatabase;
+    protected User currentUserOfDatabase;
 
     //[Start]: sendMessageToDatabase()
     public void sendMessageToDatabase(String message) {
@@ -113,18 +115,18 @@ public class AuthDataBaseActivity extends AuthActivity {
     //[Start]: showUserNameInActionBar()
     public void showUserNameInActionBar(boolean show) {
 
-        if(show) {
+        if (show) {
             usersReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    for(DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                         User user = userSnapshot.getValue(User.class);
                         Log.i(TAGAUTHDATABASEACTIVITY, "showUserNameInActionBar(): Usuario recebido: " + user.toString());
 
-                        if((user.getEmail()).equals(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())) {
+                        if ((user.getEmail()).equals(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())) {
                             setCurrentUserOfDatabase(user);
-                            getSupportActionBar().setTitle(user.isAdmin() ? "Admin " + user.getName(): user.getName());
+                            getSupportActionBar().setTitle(user.isAdmin() ? "Admin " + user.getName() : user.getName());
 
                             Log.i(TAGAUTHDATABASEACTIVITY, "\n\nshowUserNameInActionBar(): Usuario ativo:" +
                                     getCurrentUserOfDatabase().toString());
@@ -142,5 +144,4 @@ public class AuthDataBaseActivity extends AuthActivity {
         }
     }
 //[End]: showUserNameInActionBar()
-
 }
