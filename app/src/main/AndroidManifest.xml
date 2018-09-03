@@ -48,7 +48,22 @@
             android:name=".activitys.CustomListActivity"
             android:label="Material classification"
             android:screenOrientation="portrait" />
-        <activity android:name=".activitys.ResiduoDetailActivity"></activity>
+        <activity android:name=".activitys.ResiduoDetailActivity" />
+        <activity
+            android:name=".activitys.GradientBackgroundAnimActivity"
+            android:label="Animation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.SharedAnimationExample"
+            android:theme="@style/SharedAnimationActivityTheme" />
+        <activity android:name=".activitys.coordinatorlayoutexample.CoordinatorLayoutExampleActivity" />
+        <activity android:name=".activitys.coordinatorlayoutexample.subactivities.AppBarPadraoActivity" />
+        <activity android:name=".activitys.coordinatorlayoutexample.subactivities.AbasActivity" />
+        <activity
+            android:name=".activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelActivity"
+            android:label="@string/title_activity_espaco_flexivel"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelComImagemActivity"></activity>
     </application>
 
 </manifest>
