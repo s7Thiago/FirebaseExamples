@@ -1,6 +1,7 @@
 package br.com.thiagosousa.firebaseexamples.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 import android.view.Gravity;
@@ -55,6 +56,7 @@ public class MessageAdapter extends BaseAdapter {
         ConstraintLayout messageBaloonContainer = linha.findViewById(R.id.message_baloon_container);
         TextView textViewDebug = linha.findViewById(R.id.database_messag_textview);
         LinearLayout linearLayout = linha.findViewById(R.id.item_message_linear_layout_container);
+        AnimationDrawable animationDrawable;
 
 //        Inserindo as informacoes no item
         userEmailTextView.setText(message.getResponsavel());
@@ -69,10 +71,18 @@ public class MessageAdapter extends BaseAdapter {
             linearLayout.setGravity(Gravity.RIGHT);
             messageBaloonContainer.setBackgroundResource(R.drawable.message_baloon_i);
 
+            //removendo o background
+            linearLayout.setBackgroundResource(android.R.color.transparent);
+
         } else {
             linearLayout.setGravity(Gravity.LEFT);
             messageBaloonContainer.setBackgroundResource(R.drawable.message_baloon_other);
 
+//            animacao gradiente
+            animationDrawable = (AnimationDrawable) linearLayout.getBackground();
+            animationDrawable.setEnterFadeDuration(1000);
+            animationDrawable.setExitFadeDuration(1000);
+            animationDrawable.start();
         }
 
         return linha;
