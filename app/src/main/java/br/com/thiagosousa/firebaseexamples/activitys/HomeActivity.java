@@ -18,6 +18,7 @@ import android.widget.ListView;
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
+import br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.CoordinatorLayoutExampleActivity;
 import br.com.thiagosousa.firebaseexamples.objects.User;
 import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
@@ -30,7 +31,9 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     private String[] itens = new String[]{
             "Interação com o Firebase Database",
             "Exemplos de lista (com Spinner Selector)",
-            "ListView Customizado", "Gradient animation", "SharedAnimation Example", "CoordinatorLayout Example"};
+            "ListView Customizado", "Gradient animation",
+            "SharedAnimation Example", "CoordinatorLayout Example",
+            "MoveFun Logo SVG"};
     private ArrayAdapter<String> mAdapter;
     private CoordinatorLayout rootContainer;
 
@@ -198,7 +201,10 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
                 break;
 
             case 5:
-                openScreen(SharedAnimationExample.class);
+                openScreen(CoordinatorLayoutExampleActivity.class);
+                break;
+            case 6:
+                openScreen(MoveFunLogoSvgActivity.class);
                 break;
 
             default:

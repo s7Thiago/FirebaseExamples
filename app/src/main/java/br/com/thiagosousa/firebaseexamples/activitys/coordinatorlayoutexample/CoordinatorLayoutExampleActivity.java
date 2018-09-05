@@ -12,6 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import br.com.thiagosousa.firebaseexamples.R;
+import br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.subactivities.AbasActivity;
+import br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.subactivities.AppBarPadraoActivity;
+import br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelActivity;
+import br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelComImagemActivity;
 import br.com.thiagosousa.firebaseexamples.useful.UtilActivity;
 
 public class CoordinatorLayoutExampleActivity extends UtilActivity implements ListView.OnItemClickListener {
@@ -27,14 +31,15 @@ public class CoordinatorLayoutExampleActivity extends UtilActivity implements Li
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coordinator_layout_example);
+        initViews(true);
 
         adapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1, itens);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
     }
 
     public void initViews(boolean init) {
         if (init) {
-            ;
             listView = findViewById(R.id.CoordinatorLayoutExampleActivityListView);
         } else {
             Log.w(COORDINATORLAYOUTEXAMPLEACTIVITYTAG, "O método initViews() em " +
@@ -46,15 +51,19 @@ public class CoordinatorLayoutExampleActivity extends UtilActivity implements Li
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
+                openScreen(AppBarPadraoActivity.class);
                 break;
 
             case 1:
+                openScreen(AbasActivity.class);
                 break;
 
             case 2:
+                openScreen(EspacoFlexivelActivity.class);
                 break;
 
             case 3:
+                openScreen(EspacoFlexivelComImagemActivity.class);
                 break;
             default:
                 Log.w(COORDINATORLAYOUTEXAMPLEACTIVITYTAG, "Um item que não possui comportamento" +
