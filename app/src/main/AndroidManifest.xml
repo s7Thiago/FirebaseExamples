@@ -56,24 +56,21 @@
         <activity
             android:name=".activitys.SharedAnimationExample"
             android:theme="@style/SharedAnimationActivityTheme" />
-
         <activity android:name=".activitys.coordinatorlayoutexample.CoordinatorLayoutExampleActivity" />
-
         <activity
             android:name=".activitys.coordinatorlayoutexample.subactivities.AppBarPadraoActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
-
         <activity
             android:name=".activitys.coordinatorlayoutexample.subactivities.AbasActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
-
         <activity
             android:name=".activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelActivity"
             android:label="@string/title_activity_espaco_flexivel"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelComImagemActivity" />
         <activity android:name=".activitys.MoveFunLogoSvgActivity" />
+        <activity android:name=".activitys.BottomSheetActivity" />
+        <activity android:name=".activitys.CustomListViewViewHolderActivity"></activity>
     </application>
 
 </manifest>
