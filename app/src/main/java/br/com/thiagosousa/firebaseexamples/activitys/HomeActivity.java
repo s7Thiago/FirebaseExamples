@@ -33,7 +33,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
             "Exemplos de lista (com Spinner Selector)",
             "ListView Customizado", "Gradient animation",
             "SharedAnimation Example", "CoordinatorLayout Example",
-            "MoveFun Logo SVG"};
+            "MoveFun Logo SVG", "Bottom Sheet Example", "ListView com viewholder design pattern"};
     private ArrayAdapter<String> mAdapter;
     private CoordinatorLayout rootContainer;
 
@@ -205,6 +205,14 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
                 break;
             case 6:
                 openScreen(MoveFunLogoSvgActivity.class);
+                break;
+
+            case 7:
+                openScreen(BottomSheetActivity.class);
+                break;
+
+            case 8:
+                openScreen(BottomSheetActivity.class);
                 break;
 
             default:
