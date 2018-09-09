@@ -212,8 +212,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
                 break;
 
             case 8:
-                openScreen(BottomSheetActivity.class);
-                break;
+                openScreen(CustomListViewViewHolderActivity.class);
 
             default:
                 Log.w(HOMEACTIVITYTAG, getResources().getString(R.string.no_action_attirbuted));
