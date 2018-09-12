@@ -2,7 +2,6 @@ package br.com.thiagosousa.firebaseexamples.useful;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -15,14 +14,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
-import br.com.thiagosousa.firebaseexamples.activitys.FirebaseDatabaseActivity;
-import br.com.thiagosousa.firebaseexamples.activitys.HomeActivity;
-import br.com.thiagosousa.firebaseexamples.objects.User;
 
 /**
  * Created by Thiago on 13/02/2018.

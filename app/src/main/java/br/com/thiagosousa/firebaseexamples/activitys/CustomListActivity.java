@@ -1,9 +1,10 @@
 package br.com.thiagosousa.firebaseexamples.activitys;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,7 +17,7 @@ import br.com.thiagosousa.firebaseexamples.adapter.ResiduoAdapter;
 import br.com.thiagosousa.firebaseexamples.objects.Residuo;
 import br.com.thiagosousa.firebaseexamples.useful.UtilActivity;
 
-public class CustomListActivity extends UtilActivity implements AdapterView.OnItemClickListener{
+public class CustomListActivity extends UtilActivity implements AdapterView.OnItemClickListener {
 
     private static final String CUSTOMLISTACTIVITYTAG = "CustomList event";
     private ListView mainListView;
@@ -30,7 +31,7 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_list);
         initViews(true);
-        nomes = new String[] {
+        nomes = new String[]{
                 "Bateria", "Livro", "Caixa de papelão",
                 "Roupa", "Geladeira", "Carne", "Garrafa de suco",
                 "Lâmpadas incandescentes", "Paracetamol Vencido",
@@ -86,10 +87,23 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
 
                 Intent intent = new Intent(getBaseContext(), ResiduoDetailActivity.class);
 
+//                Configurando a shared animation
+//                Views
+                View view1 = view.findViewById(R.id.residue_representation);
+                View view2 = view.findViewById(R.id.residue_reciclable);
+                View view3 = view.findViewById(R.id.residue_category);
+
+                Pair<View, String> pair1 = Pair.create(view1, view1.getTransitionName());
+                Pair<View, String> pair2 = Pair.create(view2, view2.getTransitionName());
+                Pair<View, String> pair3 = Pair.create(view3, view3.getTransitionName());
+
+                ActivityOptions activityOptions = ActivityOptions
+                        .makeSceneTransitionAnimation(this, pair1, pair2, pair3);
+
 //                Enviando por intent, o objeto com os dados que serao usados na outra tela
                 intent.putExtra("residuo", residuo);
 
-                startActivity(intent);
+                startActivity(intent, activityOptions.toBundle());
 
                 break;
         }

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
         android:gravity="center_horizontal"
+        android:transitionName="residue_image_transition"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +44,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="20dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_launcher_background"
+            android:transitionName="residue_categoryimage_transition" />
 
     </LinearLayout>
 
@@ -61,10 +63,11 @@
             android:id="@+id/texto_detail_residuo_reciclavel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="is recicleble?"
             android:layout_gravity="center"
+            android:text="is recicleble?"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:transitionName="residue_isreciclable_transition" />
 
     </LinearLayout>
 

@@ -11,20 +11,22 @@
         android:layout_height="60dp"
         android:layout_margin="10dp"
         android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toStartOf="parent"
+        android:transitionName="residue_image_transition"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--TextView para o nome do residuo-->
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/residue_name_textview"
         android:layout_width="wrap_content"
-        android:textSize="25sp"
-        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginStart="8dp"
         android:text="name"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:transitionName="residue_name_transition"
         app:layout_constraintBottom_toBottomOf="@id/residue_representation"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toEndOf="@+id/residue_representation"
@@ -35,10 +37,11 @@
         android:id="@+id/residue_reciclable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_margin="10dp"
+        android:gravity="center_horizontal"
         android:text="reciclable?"
         android:textSize="11sp"
+        android:transitionName="residue_isreciclable_transition"
         app:layout_constraintLeft_toRightOf="@id/residue_category"
         app:layout_constraintRight_toLeftOf="@id/residue_category"
         app:layout_constraintTop_toBottomOf="@id/residue_category" />
@@ -50,6 +53,7 @@
         android:layout_height="50dp"
         android:layout_margin="10dp"
         android:src="@mipmap/ic_launcher"
+        android:transitionName="residue_categoryimage_transition"
         app:layout_constraintBottom_toBottomOf="@id/residue_representation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/residue_representation" />
