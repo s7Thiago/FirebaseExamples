@@ -4,7 +4,7 @@
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="40dp"
+    android:layout_margin="15dp"
     android:background="@color/colorAccent"
     android:orientation="vertical"
     app:behavior_hideable="true"

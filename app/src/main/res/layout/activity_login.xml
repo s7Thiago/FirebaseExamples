@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
     android:id="@+id/main_login_constraint_layout"
     android:layout_height="match_parent"
     tools:context="br.com.thiagosousa.firebaseexamples.activitys.LoginActivity">
@@ -40,6 +41,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/field_margin"
+            app:passwordToggleEnabled="true"
+
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutEmail">
 

@@ -3,6 +3,7 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ public class BottomSheetActivity extends AppCompatActivity implements View.OnCli
     private TextView bottomSheetActivityTextView;
     private Button bottomSheetButton;
     private BottomSheetBehavior bottomSheetBehavior;
+    private FloatingActionButton bottomSheetFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class BottomSheetActivity extends AppCompatActivity implements View.OnCli
             bottomSheetConstraintLayout = findViewById(R.id.bottomsheet_content_constraintlayout);
             bottomSheetActivityTextView = findViewById(R.id.bottomsheetactivity_textview);
             bottomSheetButton = findViewById(R.id.bottomsheetactivityy_button);
+            bottomSheetFab = findViewById(R.id.bottom_sheet_activity_fab);
         } else {
 
             Log.w(BOTTOMSHEETACTIVITYTAG, "initViews() is desactivated");
@@ -58,29 +61,45 @@ public class BottomSheetActivity extends AppCompatActivity implements View.OnCli
                 public void onStateChanged(@NonNull View bottomSheet, int newState) {
 
 //                    Reagindo aos estados do bottomsheet:
-                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    if (newState == BottomSheetBehavior.STATE_EXPANDED) {
 
                         Toast.makeText(getBaseContext(), "Bottom Sheet has expanded", Toast.LENGTH_SHORT).show();
 
-                    } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
+                    } else if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
 
                         Toast.makeText(getBaseContext(), "Bottom Sheet has collapsed", Toast.LENGTH_SHORT).show();
 
-                    } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_DRAGGING) {
+                    } else if (newState == BottomSheetBehavior.STATE_DRAGGING) {
 
                         bottomSheetConstraintLayout.setBackgroundResource(android.R.color.holo_green_light);
                         bottomSheetActivityTextView.setText("Bottom Sheet has Dragged");
 
-                    } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_SETTLING) {
+                    } else if (newState == BottomSheetBehavior.STATE_SETTLING) {
 
                         bottomSheetConstraintLayout.setBackgroundResource(android.R.color.white);
                         bottomSheetActivityTextView.setText("Bottom Sheet has SETTLING");
                     }
+
+/*//                    Faz com que o fab diminua o tamanho a imediatamente, assim que o bottom sheet é deslizado
+                    // this part hides the button immediately and waits bottom sheet
+                    // to collapse to show
+                    if (BottomSheetBehavior.STATE_DRAGGING == newState) {
+                        bottomSheetFab.animate().scaleX(0).scaleY(0).setDuration(300).start();
+                    } else if (BottomSheetBehavior.STATE_COLLAPSED == newState) {
+                        bottomSheetFab.animate().scaleX(1).scaleY(1).setDuration(300).start();
+                    }*/
                 }
 
                 @Override
                 public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                    //Aplicando escala no fab durante o deslizamento do bottom sheet
 
+//                    Faz com que o fab diminua o tamanho a medida que o bottom sheet é deslizado
+                    bottomSheetFab.animate()
+                            .scaleX(1 - slideOffset)
+                            .scaleY(1 - slideOffset)
+                            .setDuration(0)
+                            .start();
                 }
             });
 

@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Support.CoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activitys.BottomSheetActivity">
@@ -23,7 +24,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/no_action_attirbuted"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,7 @@
             android:paddingStart="3dp"
             android:text="@string/make_hideable"
             android:textColor="@color/white"
-            android:textSize="10dp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +48,18 @@
     </android.support.constraint.ConstraintLayout>
 
     <!--Including the bottom sheet-->
-    <include
-        layout="@layout/bottom_sheet" />
+    <include layout="@layout/bottom_sheet" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:id="@+id/bottom_sheet_activity_fab"
+        android:focusable="true"
+        android:src="@drawable/movefunlogo_svg"
+        app:layout_anchor="@+id/bottom_sheet"
+        app:layout_anchorGravity="top|end" />
+
 
 </android.support.design.widget.CoordinatorLayout>

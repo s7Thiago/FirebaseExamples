@@ -70,7 +70,7 @@
         <activity android:name=".activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelComImagemActivity" />
         <activity android:name=".activitys.MoveFunLogoSvgActivity" />
         <activity android:name=".activitys.BottomSheetActivity" />
-        <activity android:name=".activitys.CustomListViewViewHolderActivity"></activity>
+        <activity android:name=".activitys.CustomListViewViewHolderActivity" />
     </application>
 
 </manifest>
