@@ -69,7 +69,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelComImagemActivity" />
         <activity android:name=".activitys.MoveFunLogoSvgActivity" />
-        <activity android:name=".activitys.BottomSheetActivity" />
+        <activity android:name=".activitys.BottomSheetActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".activitys.CustomListViewViewHolderActivity" />
     </application>
 

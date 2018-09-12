@@ -28,9 +28,9 @@
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/email_field_for_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/email_field_for_login"
                 android:background="@drawable/selector_edittext_square_black"
                 android:drawableEnd="@drawable/mail_outline_black_18x18"
                 android:hint="@string/hint_email_field"
