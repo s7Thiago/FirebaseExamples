@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -118,6 +119,27 @@ public class UtilActivity extends AppCompatActivity {
 
     //    [Start]: isEmptyField()
     public boolean isEmptyField(TextInputEditText field) {
+        Log.i(UTILACTIVITYTAG, "isEmpty() is called");
+        boolean isEmpty;
+
+        if (field.getText().toString().equals("")) {
+            //            If the refered filed is empty
+            isEmpty = true;
+
+            Log.w(UTILACTIVITYTAG, "isEmpty() returned true");
+
+        } else {
+            isEmpty = false;
+            Log.w(UTILACTIVITYTAG, "isEmpty() returned false");
+            Log.w(UTILACTIVITYTAG, "field content: " + field.getText());
+        }
+
+        return isEmpty;
+    }
+    //    [End]: isEmptyField()
+
+    //    [Start]: isEmptyField()
+    public boolean isEmptyField(EditText field) {
         Log.i(UTILACTIVITYTAG, "isEmpty() is called");
         boolean isEmpty;
 

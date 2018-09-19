@@ -6,9 +6,11 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.widget.AppCompatEditText;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,8 +24,8 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
 
     private Button registerScreenButton;
     private Button loginButton;
-    private TextInputEditText emailField;
-    private TextInputEditText passwordField;
+    private EditText emailField;
+    private EditText passwordField;
     private ConstraintLayout mainLoginConstraintLayout;
     private AnimationDrawable animationDrawable;
 
@@ -133,7 +135,7 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
                 String email = (emailField.getText().toString());
                 String password = (passwordField.getText().toString());
 
-                TextInputEditText[] loginFields = new TextInputEditText[]{emailField, passwordField};
+                EditText[] loginFields = new EditText[]{emailField, passwordField};
 
                 if (verifyFields(loginFields)) {
 //                    Se não houver nada de errado com os campos

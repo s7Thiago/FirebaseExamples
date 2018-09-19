@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -148,6 +149,37 @@ public class AuthActivity extends UtilActivity {
         Log.i(AUTHACTICITYTAG, "verifiyng login fields...");
 
         for (TextInputEditText textInputEditText : textInputEditTexts) {
+
+            if (!isEmptyField(textInputEditText)) {
+
+//                Está tudo correto. Nenhum campo vazio
+                Log.i(AUTHACTICITYTAG, "There´s nothing wrong with the fields!");
+                fieldsOK = true;
+            } else {
+
+//                Foi detectado algum campo vazio. mostrar mensagem de erro
+                Log.i(AUTHACTICITYTAG, "There is something wrong with the fields!");
+                fieldsOK = false;
+                textInputEditText.setError(getString(R.string.empty_field_msg));
+            }
+
+        }
+
+        Log.w(AUTHACTICITYTAG, "verifyLoginFields() returned " + fieldsOK + ".");
+        return fieldsOK;
+    }
+//    [End]:verifyFields()
+
+    //    [Start]: verifyFields()
+    /**
+     * Used for validate a collection fields, not alow that some are void content
+     **/
+    protected boolean verifyFields(EditText[] textInputEditTexts) {
+        boolean fieldsOK = false;
+
+        Log.i(AUTHACTICITYTAG, "verifiyng login fields...");
+
+        for (EditText textInputEditText : textInputEditTexts) {
 
             if (!isEmptyField(textInputEditText)) {
 
