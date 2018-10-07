@@ -76,6 +76,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".activitys.CustomListViewViewHolderActivity" />
         <activity android:name=".DetailViewHolderActivity" />
+        <activity android:name=".RecyclerViewActivity"></activity>
     </application>
 
 </manifest>
