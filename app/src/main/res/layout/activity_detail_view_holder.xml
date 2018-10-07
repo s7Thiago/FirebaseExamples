@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".DetailViewHolderActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:textSize="28sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/app_name"
+            android:id="@+id/detail_viewholderactivity_text_title"
+            android:layout_width="match_parent"
+            android:transitionName="@string/transitionViewHolderActivityItemTextTitle"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/detail_viewholderactivity_image"
+            android:layout_width="match_parent"
+            android:layout_height="203dp"
+            android:layout_margin="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_launcher_background"
+            android:transitionName="@string/transitionViewHolderActivityItemImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_viewholderactivity_text_title" />
+
+        <TextView
+            android:transitionName="@string/transitionViewHolderActivityItemTextTime"
+            android:id="@+id/detail_viewholderactivity_text_time"
+            android:layout_width="match_parent"
+            android:layout_height="19dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/app_name"
+            android:layout_margin="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_viewholderactivity_image" />
+
+        <TextView
+            android:transitionName="@string/transitionViewHolderActivityItemTextAddressDescription"
+            android:id="@+id/detail_viewholderactivity_text_address_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_viewholderactivity_text_time" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
