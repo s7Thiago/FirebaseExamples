@@ -7,12 +7,14 @@
     <ImageView
         android:id="@+id/item_customlistviewholderactivity_imageview"
         android:layout_width="100dp"
+        android:transitionName="@string/transitionViewHolderActivityItemImage"
         android:layout_height="100dp"
         android:layout_margin="12dp"
         android:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/item_customlistviewholderactivity_title_textview"
+        android:transitionName="@string/transitionViewHolderActivityItemTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
@@ -22,6 +24,7 @@
 
     <TextView
         android:id="@+id/item_customlistviewholderactivity_time_textview"
+        android:transitionName="@string/transitionViewHolderActivityItemTextTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
@@ -30,6 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/item_customlistviewholderactivity_title_textview" />
 
     <TextView
+        android:transitionName="@string/transitionViewHolderActivityItemTextAddressDescription"
         android:id="@+id/item_customlistviewholderactivity_address_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
