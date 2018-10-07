@@ -6,9 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import br.com.thiagosousa.firebaseexamples.R;
-
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> {
+public class CoordinatorRecyclerViewAdapter extends RecyclerView.Adapter<CoordinatorRecyclerViewAdapter.MyViewHolder> {
     private String[] mDataset;
 
     // Provide a reference to the views for each data item
@@ -24,15 +22,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyRecyclerViewAdapter(String[] myDataset) {
+    public CoordinatorRecyclerViewAdapter(String[] myDataset) {
         mDataset = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @NonNull
     @Override
-    public MyRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
-                                                                 int viewType) {
+    public CoordinatorRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                                          int viewType) {
         // create a new view
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
                 .inflate(android.R.layout.simple_list_item_1, parent, false);

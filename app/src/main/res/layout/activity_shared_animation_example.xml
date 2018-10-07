@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".activitys.SharedAnimationExample">
 
+    <ListView
+        android:id="@+id/sharedanimationactivity_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
 </android.support.constraint.ConstraintLayout>

@@ -78,11 +78,11 @@ public class MessageAdapter extends BaseAdapter {
             linearLayout.setGravity(Gravity.LEFT);
             messageBaloonContainer.setBackgroundResource(R.drawable.message_baloon_other);
 
-//            animacao gradiente
+/*            animacao gradiente
             animationDrawable = (AnimationDrawable) linearLayout.getBackground();
             animationDrawable.setEnterFadeDuration(1000);
             animationDrawable.setExitFadeDuration(1000);
-            animationDrawable.start();
+            animationDrawable.start();*/
         }
 
         return linha;

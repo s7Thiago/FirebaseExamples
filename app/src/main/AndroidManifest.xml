@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.thiagosousa.firebaseexamples">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/firebase_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".activitys.LoginActivity"
             android:exported="true"
@@ -69,9 +71,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activitys.coordinatorlayoutexample.subactivities.EspacoFlexivelComImagemActivity" />
         <activity android:name=".activitys.MoveFunLogoSvgActivity" />
-        <activity android:name=".activitys.BottomSheetActivity"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".activitys.BottomSheetActivity"
+            android:theme="@style/AppTheme" />
         <activity android:name=".activitys.CustomListViewViewHolderActivity" />
+        <activity android:name=".DetailViewHolderActivity" />
     </application>
 
 </manifest>
