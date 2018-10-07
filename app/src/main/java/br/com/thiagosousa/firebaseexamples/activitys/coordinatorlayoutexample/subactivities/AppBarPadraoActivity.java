@@ -2,17 +2,14 @@ package br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.s
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toolbar;
 
 import br.com.thiagosousa.firebaseexamples.R;
-import br.com.thiagosousa.firebaseexamples.adapter.MyRecyclerViewAdapter;
+import br.com.thiagosousa.firebaseexamples.adapter.CoordinatorRecyclerViewAdapter;
 
 public class AppBarPadraoActivity extends AppCompatActivity{
 
@@ -48,7 +45,7 @@ public class AppBarPadraoActivity extends AppCompatActivity{
         if (configure) {
             itens = gerarItens(true);
 //            Configurando o recycclerview
-            adapter = new MyRecyclerViewAdapter(itens);
+            adapter = new CoordinatorRecyclerViewAdapter(itens);
 
 //             use this setting to improve performance if you know that changes
 //             in content do not change the layout size of the RecyclerView
