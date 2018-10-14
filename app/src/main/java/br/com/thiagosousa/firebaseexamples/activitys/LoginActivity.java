@@ -4,23 +4,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.widget.AppCompatEditText;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
+import br.com.thiagosousa.firebaseexamples.objects.User;
 import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
-import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
 
-public class LoginActivity extends AuthDataBaseActivity implements View.OnClickListener {
-    private static final String LOGINAVTIVITYTAG = "LoginAcivity event";
+public class LoginActivity extends AuthActivity implements View.OnClickListener {
+    private static final String TAG = "LoginActivity";
 
     private Button registerScreenButton;
     private Button loginButton;
@@ -28,6 +32,9 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
     private EditText passwordField;
     private ConstraintLayout mainLoginConstraintLayout;
     private AnimationDrawable animationDrawable;
+
+    //
+    User user;
 
     //    [Start]: onCreate method
     @Override
@@ -42,7 +49,8 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
 //    [End]: onCreate method
 
     //    [Start]: initViews method
-    private void initViews(boolean init) {
+    @Override
+    public void initViews(boolean init) {
         if (init) {
 //            if init is true, initialize views
             registerScreenButton = findViewById(R.id.registerScreenButton);
@@ -53,13 +61,14 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
 
         } else {
 //            if init is false, do nothing
-            Log.i(LOGINAVTIVITYTAG, "initViews() is desactivated");
+            Log.i(TAG, "initViews() is desactivated");
         }
     }
 //    [End]: initViews method
 
     //    [Start]: configureScreen()
-    private void configureScreen(boolean setup) {
+    @Override
+    public void configureScreen(boolean setup) {
         if (setup) {
 //            Configure screen, if setup variable is true
             initOnclickOfViews(true);
@@ -68,7 +77,7 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
             mAuth = FirebaseAuth.getInstance();
         } else {
 //            Do nothing
-            Log.i(LOGINAVTIVITYTAG, "configureScreen is desactivated");
+            Log.i(TAG, "configureScreen is desactivated");
         }
     }
     //    [End]: configureScreen()
@@ -83,7 +92,7 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
 
         } else {
 //            if init is false, do nothing
-            Log.w(LOGINAVTIVITYTAG, "The inclick of all views has been desactivated!");
+            Log.w(TAG, "The inclick of all views has been desactivated!");
         }
     }
     //    [End]: initOnclickOfViews()
@@ -93,16 +102,12 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
     protected void onStart() {
         super.onStart();
 
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-
-        //        Verifica se há alguém conectado, e abre a HomeActivity se positivo
+        //        Verifica se há alguém conectado. Se sim, abre a tela adequada
         if (isAnyoneConnected()) {
-            openScreen(HomeActivity.class);
+            onUserDataChangedInDatabase();
             finish();
         } else {
-            Log.i(LOGINAVTIVITYTAG,"Não há ninguém conectado. Permanecendo nesta tela." );
+            Log.i(TAG, "Não há ninguém conectado. Permanecendo nesta tela.");
         }
 
     }
@@ -130,24 +135,27 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
                 break;
 
             case R.id.signInButton:
-                Log.i(LOGINAVTIVITYTAG, "onClick(): O botão de login foi pressionado");
+                Log.i(TAG, "onClick(): O botão de login foi pressionado");
 
                 String email = (emailField.getText().toString());
                 String password = (passwordField.getText().toString());
+                final String userData[] = new String[]{email, password};
 
                 EditText[] loginFields = new EditText[]{emailField, passwordField};
 
                 if (verifyFields(loginFields)) {
 //                    Se não houver nada de errado com os campos
 
-                    if((email.toLowerCase()).equals("ts open")) {
+                    if ((email.toLowerCase()).equals("ts open")) {
                         openScreen(HomeActivity.class);
                     } else {
-                        connectUser(email, password);
+
+                        //Preparando login. O ultimo parametro eh a tela que sera aberta, se o login for efetuado com sucesso
+                        connectUser(email, password, HomeActivity.class);
                     }
                 } else {
 //                    Se houver algo de errado com algum dos campos
-                    Log.w(LOGINAVTIVITYTAG,"Há algo de errado com algum dos campos" );
+                    Log.w(TAG, "Há algo de errado com algum dos campos");
                 }
                 break;
         }
@@ -165,7 +173,7 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
 
         /*Capturando os dados dos campos mais importantes desta tela para serem recuperados
         caso a tela seja rotacionada*/
-        Log.w(LOGINAVTIVITYTAG,"onSaveInstanceState() em LoginActivity foi chamado");
+        Log.w(TAG, "onSaveInstanceState() em LoginActivity foi chamado");
         outState.putString("loginEmailSaveData", email);
         outState.putString("loginPasswordSaveData", password);
         super.onSaveInstanceState(outState);
@@ -178,10 +186,10 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
         emailField = findViewById(R.id.email_field_for_login);
         passwordField = findViewById(R.id.password_field_for_login);
 
-        Log.w(LOGINAVTIVITYTAG,"onRestoreInstanceState() em LoginActivity foi chamado");
-        Log.w(LOGINAVTIVITYTAG,"Restaurando as seguntes informações para as respectivas views:" +
+        Log.w(TAG, "onRestoreInstanceState() em LoginActivity foi chamado");
+        Log.w(TAG, "Restaurando as seguntes informações para as respectivas views:" +
                 "\n\n" + String.valueOf(savedInstanceState.getString("loginEmailSaveData")) +
-        "\n" + String.valueOf(savedInstanceState.getString("loginPasswordSaveData")));
+                "\n" + String.valueOf(savedInstanceState.getString("loginPasswordSaveData")));
 
         //Recuperando informações gravadas pelo método onSaveInstanceState()
         String email = String.valueOf(savedInstanceState.getString("loginEmailSaveData")),
@@ -195,7 +203,7 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
     }
     //[End]: onRestoreInstanceState()
 
-//    [Start]: playScreenAnimation()
+    //    [Start]: playScreenAnimation()
     public void playScreenAnimation(boolean load) {
         if (load) {
             //inicia a animacao da tela
@@ -204,10 +212,50 @@ public class LoginActivity extends AuthDataBaseActivity implements View.OnClickL
             animationDrawable.setEnterFadeDuration(4000);
             animationDrawable.setExitFadeDuration(4000);
             animationDrawable.start();
-        }else {
-            Log.w(LOGINAVTIVITYTAG, "playScreenAnimation() were called, but is desactivated");
+        } else {
+            Log.w(TAG, "playScreenAnimation() were called, but is desactivated");
         }
     }
 //    [End]: playScreenAnimation()
+
+    //    [Start]: getUserDataFromDatabase()
+    @Override
+    public void onUserDataChangedInDatabase() {
+        FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot user : dataSnapshot.getChildren()) {
+
+                    User inneUser = user.getValue(User.class);
+
+                    Log.d(TAG, "onDataChange: Capturing current user for extract data: " + inneUser);
+
+                    assert inneUser != null;
+                    if (inneUser.getEmail().toLowerCase().equals(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())) {
+
+                        Log.i(TAG, "onDataChange: currentUser: \n" + mAuth.getCurrentUser().getEmail());
+                        Log.w(TAG, "\n--------------------\nonDataChange: Done!" + "" + "\n\n " + inneUser + "\nisAdmin: " + inneUser.isAdmin() + "\n\n-------------------------");
+
+                        //Abaixo vao os codigos de comportamento que definel o que fazer se algum dado for alterado
+
+                        if (inneUser.isAdmin()) {
+                            openScreen(HomeActivity.class);
+                            finish();
+                        } else {
+                            openScreen(FirebaseDatabaseActivity.class);
+                            finish();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+//    [End]: getUserDataFromDatabase()
 
 }

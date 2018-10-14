@@ -1,24 +1,24 @@
 package br.com.thiagosousa.firebaseexamples.activitys;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
+        import android.app.Fragment;
+        import android.app.FragmentManager;
+        import android.app.FragmentTransaction;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.util.Log;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.ArrayAdapter;
+        import android.widget.Button;
+        import android.widget.Spinner;
 
-import br.com.thiagosousa.firebaseexamples.R;
-import br.com.thiagosousa.firebaseexamples.fragments.SimpleListFragment;
-import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+        import br.com.thiagosousa.firebaseexamples.R;
+        import br.com.thiagosousa.firebaseexamples.fragments.SimpleListFragment;
+        import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
 
-public class SpinnerActivity extends AuthActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class FragmentActivity extends AuthActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-    final static String SPINNERACTIVITYTAG = "SpinnerActivity event";
+    private static final String TAG = "FragmentActivity";
     private FragmentManager fragmentManager = getFragmentManager();
     private FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     private Spinner mSpinner;
@@ -51,7 +51,7 @@ public class SpinnerActivity extends AuthActivity implements AdapterView.OnItemS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spinner);
+        setContentView(R.layout.activity_fragment);
         initViews(true);
 
 //        definindo o gerenciador de cliques como sendo o listener padrão da classe
@@ -72,8 +72,9 @@ public class SpinnerActivity extends AuthActivity implements AdapterView.OnItemS
             mSpinner = findViewById(R.id.spinner_SpinnerActivity);
             actionButton1 = findViewById(R.id.spinnerActivity_ActionButton1);
             actionButton2 = findViewById(R.id.spinnerActivity_ActionButton2);
+
         } else {
-            Log.w(SPINNERACTIVITYTAG, "O método initViews() está desativado");
+            Log.w(TAG, "O método initViews() está desativado");
         }
     }
     //[End]: initViews()
@@ -118,7 +119,7 @@ public class SpinnerActivity extends AuthActivity implements AdapterView.OnItemS
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.spinnerActivity_ActionButton2:
-                Log.i(SPINNERACTIVITYTAG, "remove fragment in SpinnerActivity is clicked");
+                Log.i(TAG, "remove fragment in FragmentActivity is clicked");
 
                 Fragment fragment = fragmentManager.findFragmentById(R.id.fragments_container_spinnerActivity);
                 FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -129,9 +130,15 @@ public class SpinnerActivity extends AuthActivity implements AdapterView.OnItemS
 
             default:
                 showToastShort("Ainda não há uma ação definida para este componente");
-                Log.w(SPINNERACTIVITYTAG, "default view in SpinnerActivity is clicked");
+                Log.w(TAG, "default view in FragmentActivity is clicked");
                 break;
         }
     }
     //[End]: OnClick()
+
+    //    [Start]:onUserDataChangedInDatabase()
+    @Override
+    public void onUserDataChangedInDatabase() {
+    }
+//    [End]:onUserDataChangedInDatabase()
 }

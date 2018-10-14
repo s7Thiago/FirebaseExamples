@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:padding="15dp"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/recyclerviewactivity_item_imageview_logo"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:src="@drawable/ic_launcher_background"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:textSize="@dimen/item_title_size"
+        android:layout_marginStart="@dimen/listitem_margin_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/recyclerviewactivity_item_imageview_logo"
+        android:id="@+id/recyclerviewactivity_item_textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_of_this_item" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/recyclerviewactivity_item_textview_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/listitem_margin_left"
+        android:layout_marginBottom="8dp"
+        android:text="@string/description_of_this_item"
+        android:textSize="@dimen/item_description_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/recyclerviewactivity_item_imageview_logo"
+        app:layout_constraintTop_toBottomOf="@id/recyclerviewactivity_item_textview_title" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/recyclerviewactivity_item_textview_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/date"
+        android:textSize="@dimen/item_description_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

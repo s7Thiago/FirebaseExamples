@@ -2,16 +2,15 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 import android.widget.LinearLayout;
 
 import br.com.thiagosousa.firebaseexamples.R;
-import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
+import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
 
-public class GradientBackgroundAnimActivity extends AuthDataBaseActivity {
+public class GradientBackgroundAnimActivity extends AuthActivity {
 
     private static final String GRADIENTBACKGROUNDANIMACTIVITYTAG = "Activity_anim event";
 
@@ -52,4 +51,10 @@ public class GradientBackgroundAnimActivity extends AuthDataBaseActivity {
         }
 
     }
+
+    //    [Start]: onUserDataChangedInDatabase()
+    @Override
+    public void onUserDataChangedInDatabase() {
+    }
+//    [End]: onUserDataChangedInDatabase()
 }

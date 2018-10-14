@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:paddingTop="15dp">
 
+    <!--android:background="@drawable/bg_login_screen_animation"-->
     <LinearLayout
         android:id="@+id/item_message_linear_layout_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:background="@drawable/bg_login_screen_animation"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent">

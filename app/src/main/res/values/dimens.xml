@@ -3,4 +3,8 @@
     <dimen name="field_margin">20dp</dimen>
     <dimen name="button_margin_top">20dp</dimen>
     <dimen name="auth_text_size">11sp</dimen>
+    <dimen name="item_title_size">20sp</dimen>
+    <dimen name="item_description_size">11sp</dimen>
+    <dimen name="listitem_margin">10dp</dimen>
+    <dimen name="listitem_margin_left">29dp</dimen>
 </resources>

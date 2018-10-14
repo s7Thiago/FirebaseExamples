@@ -38,6 +38,7 @@ public class CoordinatorLayoutExampleActivity extends UtilActivity implements Li
         listView.setOnItemClickListener(this);
     }
 
+    @Override
     public void initViews(boolean init) {
         if (init) {
             listView = findViewById(R.id.CoordinatorLayoutExampleActivityListView);
@@ -45,6 +46,11 @@ public class CoordinatorLayoutExampleActivity extends UtilActivity implements Li
             Log.w(COORDINATORLAYOUTEXAMPLEACTIVITYTAG, "O método initViews() em " +
                     "CoordinatorLayoutExampleActivity foi definido como false");
         }
+    }
+
+    @Override
+    public void configureScreen(boolean configure) {
+
     }
 
     @Override

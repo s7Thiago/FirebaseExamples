@@ -45,7 +45,7 @@
             android:label="@string/database_screen_label"
             android:screenOrientation="portrait"
             android:theme="@style/messages_screen_theme" />
-        <activity android:name=".activitys.SpinnerActivity" />
+        <activity android:name=".activitys.FragmentActivity" />
         <activity
             android:name=".activitys.CustomListActivity"
             android:label="Material classification"

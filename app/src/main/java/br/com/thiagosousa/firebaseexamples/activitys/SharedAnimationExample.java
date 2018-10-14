@@ -29,7 +29,8 @@ public class SharedAnimationExample extends UtilActivity implements AdapterView.
         configureScreen(true);
     }
 
-    private void configureScreen(boolean configure) {
+    @Override
+    public void configureScreen(boolean configure) {
         if (configure) {
 
 //            listView
@@ -42,7 +43,8 @@ public class SharedAnimationExample extends UtilActivity implements AdapterView.
         }
     }
 
-    private void initViews(boolean init) {
+    @Override
+    public void initViews(boolean init) {
         if (init) {
 
             listView = findViewById(R.id.sharedanimationactivity_listview);

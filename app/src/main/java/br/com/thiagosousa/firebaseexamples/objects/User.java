@@ -3,7 +3,9 @@ package br.com.thiagosousa.firebaseexamples.objects;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-public class User extends Person implements Parcelable{
+import java.io.Serializable;
+
+public class User extends Person implements Parcelable, Serializable {
 
     private String username;
     private String password;
@@ -16,7 +18,7 @@ public class User extends Person implements Parcelable{
 //    [End]: User()
 
     //    [Start]: User()
-    public User(String name,String lastname,String email,String password, boolean admin) {
+    public User(String name, String lastname, String email, String password, boolean admin) {
         this.name = name;
         this.lastName = lastname;
         this.email = email;
@@ -41,7 +43,7 @@ public class User extends Person implements Parcelable{
     }
 //    [End]: User()
 
-//   [Start]: User()
+    //   [Start]: User()
     public User(String name, String lastname, String cpf, String username, String password, String phoneNumber) {
         super(name, lastname, cpf, phoneNumber);
         this.username = username;

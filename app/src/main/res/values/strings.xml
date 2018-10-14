@@ -42,4 +42,9 @@
     <string name="transitionViewHolderActivityItemTextTime">viewHolderActivityItemTextTimeTransition</string>
     <string name="transitionViewHolderActivityItemTextAddressDescription">viewHolderActivityItemTextTransitionTransition</string>
 
+    <!--Strings para predefinir texto dos itens do recyclerview de exemplo-->
+    <string name="title_of_this_item">Title of this item</string>
+    <string name="description_of_this_item">Description of this item</string>
+    <string name="date">Date</string>
+
 </resources>

@@ -4,24 +4,20 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.objects.User;
-import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
+import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
 
-public class RegisterActivity extends AuthDataBaseActivity implements View.OnClickListener {
+public class RegisterActivity extends AuthActivity implements View.OnClickListener {
 
-    private static final String REGISTERACTIVITYTAG = "RegisterActivity";
+    private static final String TAG = "RegisterActivity";
 
     private TextInputEditText nameField;
     private TextInputEditText lastNameField;
@@ -45,15 +41,12 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
     @Override
     protected void onStart() {
         super.onStart();
-
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
     }
 //    [End]: onStart()
 
     //    [Start]: initViews method
-    private void initViews(boolean init) {
+    @Override
+    public void initViews(boolean init) {
         if (init) {
 //            if init is true, initialize views
             registerButton = findViewById(R.id.createNewUserButton);
@@ -72,7 +65,8 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
 //    [End]: initViews method
 
     //    [Start]: configureScreen()
-    private void configureScreen(boolean setup) {
+    @Override
+    public void configureScreen(boolean setup) {
         if (setup) {
 //            Configure screen, if setup variable is true
             Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
@@ -84,7 +78,7 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
             mAuth = FirebaseAuth.getInstance();
         } else {
 //            Do nothing
-            Log.i(REGISTERACTIVITYTAG, "configureScreen is desactivated");
+            Log.i(TAG, "configureScreen is desactivated");
         }
     }
     //    [End]: configureScreen()
@@ -92,14 +86,10 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
     //    [Start]: initOnclickOfViews()
     public void initOnclickOfViews(boolean init) {
         if (init) {
-//            if init is true, initialize onClick of views
-            init = true;
-
             registerButton.setOnClickListener(this);
 
         } else {
-//            if init is false, do nothing
-            init = false;
+            Log.w(TAG, "initOnclickOfViews: eventos de clique dos botoes desabilitados");
         }
     }
     //    [End]: initOnclickOfViews()
@@ -126,7 +116,7 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.createNewUserButton:
-                Log.i(REGISTERACTIVITYTAG, "O evento de clique em do botão de registro foi chamado");
+                Log.i(TAG, "O evento de clique em do botão de registro foi chamado");
 
                 int cont = 0;
 
@@ -139,9 +129,9 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
 
                 if((passwordField.getText().toString()).equals(confirmPasswordField.getText().toString())) {
                     for (TextInputEditText registerField : registerFields) {
-                        Log.w(REGISTERACTIVITYTAG, "Verificando campo " + cont);
+                        Log.w(TAG, "Verificando campo " + cont);
                         if (isEmptyField(registerFields[cont])) {
-                            Log.w(REGISTERACTIVITYTAG, "O campo " + registerField.getId() + " estava vazio!");
+                            Log.w(TAG, "O campo " + registerField.getId() + " estava vazio!");
                             registerField.setError(getString(R.string.empty_field_msg));
                         } else {
 
@@ -153,6 +143,7 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
                                     passwordField.getText().toString(),
                                     false
                             );
+
                         /*Tratando algum erro que possa ocorrer em relacao a consistencia dos
                          dados recebidos dos campos*/
                             try {
@@ -162,7 +153,7 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
                                 showProgressDialog(false);
                             }
 
-                        /*Log.w(REGISTERACTIVITYTAG, "Tudo certo com os campos de login!\nAutenticando para " +
+                        /*Log.w(TAG, "Tudo certo com os campos de login!\nAutenticando para " +
                                 (mAuth.getFirebaseAuthInstance()).getEmail());*/
                         }
                         cont++;
@@ -172,37 +163,14 @@ public class RegisterActivity extends AuthDataBaseActivity implements View.OnCli
                     showSnackBarLong(getString(R.string.error_confirm_password), mainRegisterConstainer);
                 }
                 break;
-
-            case R.id.mainContainerRegister:
-                updateUI(mAuth.getCurrentUser());
-                break;
         }
     }
     //    [End]: onClick()
 
-    //    [Start]: onCreateOptionsMenu()
+
+//    [Start]: onUserDataChangedInDatabase()
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_home, menu);
-        return true;
+    public void onUserDataChangedInDatabase() {
     }
-    // [End]: onCreateOptionsMenu()
-
-    //[Start]: onOptionsItemSelected()
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.action_disconnect:
-                Log.w(REGISTERACTIVITYTAG, "Desconectando usuário através de uma opção do menu");
-                signOut(mainRegisterConstainer);
-                break;
-
-            default:
-                showToastShort("Um item de menu não definido foi clicado");
-        }
-        return true;
-    }
-    //[End]: onOptionsItemSelected()
+//    [End]: onUserDataChangedInDatabase()
 }

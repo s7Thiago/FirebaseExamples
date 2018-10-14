@@ -2,6 +2,7 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,15 +16,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
+import br.com.thiagosousa.firebaseexamples.RecyclerViewActivity;
 import br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.CoordinatorLayoutExampleActivity;
 import br.com.thiagosousa.firebaseexamples.objects.User;
-import br.com.thiagosousa.firebaseexamples.useful.AuthDataBaseActivity;
+import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.useful.Observer.Observer;
 
-public class HomeActivity extends AuthDataBaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
-    private static final String HOMEACTIVITYTAG = "Home activity event";
+public class HomeActivity extends AuthActivity implements View.OnClickListener, AdapterView.OnItemClickListener, Observer {
+    private static final String TAG = "HomeActivity";
 
     private FloatingActionButton fab;
     private Toolbar toolbar;
@@ -33,9 +41,11 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
             "Exemplos de lista (com Spinner Selector)",
             "ListView Customizado", "Gradient animation",
             "SharedAnimation Example", "CoordinatorLayout Example",
-            "MoveFun Logo SVG", "Bottom Sheet Example", "ListView com viewholder design pattern"};
+            "MoveFun Logo SVG", "Bottom Sheet Example", "ListView com viewholder design pattern",
+            "RecyclerView Example"};
     private ArrayAdapter<String> mAdapter;
     private CoordinatorLayout rootContainer;
+    private User user;
 
     //    [Start]: onCreate()
     @Override
@@ -47,6 +57,9 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
 
         homeItens.setOnItemClickListener(this);
 
+//        user = (User) getIntent().getParcelableExtra ("UserObject");
+//        Log.w(TAG, "onCreate: Usuario capturado da tela de login:" + user.getEmail());
+
     }
     //    [End]: onCreate()
 
@@ -55,17 +68,16 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     protected void onStart() {
         super.onStart();
 
-//        Inserindo o nome do atual usuario na actionbar, precedido de admin se o mesmo for
-        showUserNameInActionBar(true);
-
-        //inYourPlace(HomeActivity.class);
+        //Faz algo caso as informacoes do atual usuario sejam alteradas
+        onUserDataChangedInDatabase();
     }
 //[End]: onStart()
 
     //    [Start]: initViews()
+    @Override
     public void initViews(boolean init) {
         if (init) {
-            Log.d(HOMEACTIVITYTAG, "initViews() is activated in HOMEACTIVITY");
+            Log.d(TAG, "initViews() is activated in HOMEACTIVITY");
 //            Se ativado, as views do layout são linkadas ao código
 
             fab = findViewById(R.id.fab);
@@ -74,16 +86,17 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
             rootContainer = findViewById(R.id.home_activity_root_container);
 
         } else {
-            Log.w(HOMEACTIVITYTAG, "initViews() is desactivated in HOMEACTIVITY");
+            Log.w(TAG, "initViews() is desactivated in HOMEACTIVITY");
 //            Se desativado, somente avisar no log
         }
     }
     //    [End]: initViews()
 
     //    [Start]: configureScreen()
-    private void configureScreen(boolean config) {
+    @Override
+    public void configureScreen(boolean config) {
         if (config) {
-            Log.d(HOMEACTIVITYTAG, "configureScreen() is activated in HOMEACTIVITY");
+            Log.d(TAG, "configureScreen() is activated in HOMEACTIVITY");
 //            Se ativado, alguns aspectos nesta tela serão modificados
 
             setSupportActionBar(toolbar);
@@ -100,7 +113,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
             homeItens.setAdapter(mAdapter);
 
         } else {
-            Log.w(HOMEACTIVITYTAG, "configureScreen() is desactivated in HOMEACTIVITY");
+            Log.w(TAG, "configureScreen() is desactivated in HOMEACTIVITY");
 //            Se desativado, somente avisar no log
         }
     }
@@ -133,7 +146,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
                 }
                 break;
             default:
-                Log.w(HOMEACTIVITYTAG, "View clicked is have not a registered action in HOMEACTIVITY");
+                Log.w(TAG, "View clicked is have not a registered action in HOMEACTIVITY");
                 break;
         }
     }
@@ -156,10 +169,10 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_disconnect:
-                signOut(null);
-                Log.w(HOMEACTIVITYTAG, "Menu Action_signOut: Current User is signed out");
+                signOut();
+                Log.w(TAG, "Menu Action_signOut: Current User is signed out");
                 finish();
-                Log.w(HOMEACTIVITYTAG, "Opening the LoginScreen...");
+                Log.w(TAG, "Opening the LoginScreen...");
                 openScreen(LoginActivity.class);
                 break;
 
@@ -168,7 +181,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
                 break;
 
             case R.id.show_snackkbar_with_current_user_information:
-                showToastShort(getCurrentUserOfDatabase().toString());
+//                showToastShort(getCurrentUserOfDatabase().toString());
                 break;
         }
         return true;
@@ -185,7 +198,7 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
                 break;
 
             case 1:
-                startActivity(new Intent(getBaseContext(), SpinnerActivity.class));
+                startActivity(new Intent(getBaseContext(), FragmentActivity.class));
                 break;
 
             case 2:
@@ -213,40 +226,65 @@ public class HomeActivity extends AuthDataBaseActivity implements View.OnClickLi
 
             case 8:
                 openScreen(CustomListViewViewHolderActivity.class);
+                break;
+
+            case 9:
+                openScreen(RecyclerViewActivity.class);
+                break;
 
             default:
-                Log.w(HOMEACTIVITYTAG, getResources().getString(R.string.no_action_attirbuted));
+                Log.w(TAG, getResources().getString(R.string.no_action_attirbuted));
                 showToastShort(getResources().getString(R.string.no_action_attirbuted));
                 break;
         }
     }
     //[End]: onItemClick()
 
-    //    [Start]:inYourPlace()
-    //Se o usuario atual não for um administrador, redireciona para o lugar certo
-    public void inYourPlace(Class currentActivity) {
-        User user = getCurrentUserOfDatabase();
+    //    [Start]: onUserDataChangedInDatabase()
+    @Override
+    public void onUserDataChangedInDatabase() {
+        FirebaseDatabase.getInstance().getReference("Users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        if (!(user.isAdmin())) {
-            finish();
-            openScreen(FirebaseDatabaseActivity.class);
-            showToastShort("You isn't admin...");
+                for (DataSnapshot user : dataSnapshot.getChildren()) {
 
-            Log.w(HOMEACTIVITYTAG, "inYourPlace():\n\n" + user.getName() + " Não é um administrador." +
-                    " finalizando atividade, e redirecionando para o local esperado" + "\n\n");
+                    User inneUser = user.getValue(User.class);
 
-        } else {
+                    Log.d(TAG, "onDataChange: Capturing current user for extract data: " + inneUser);
 
-            if (!(currentActivity.equals(HomeActivity.class))) {
-                finish();
-                openScreen(HomeActivity.class);
-                showToastShort("Hello admin!!! :-D");
+                    assert inneUser != null;
+                    if (inneUser.getEmail().toLowerCase().equals(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())) {
 
-                Log.w(HOMEACTIVITYTAG, "inYourPlace():\n\n" + user.getName() + " Não é um administrador." +
-                        " Abrindo tela principal" + "\n\n");
+                        Log.i(TAG, "onDataChange: currentUser: \n" + mAuth.getCurrentUser().getEmail());
+                        Log.w(TAG, "\n--------------------\nonDataChange: Done!" + "" + "\n\n " + inneUser + "\nisAdmin: " + inneUser.isAdmin() + "\n\n-------------------------");
+
+                        //Abaixo vao os codigos de comportamento que definel o que fazer se algum dado for alterado
+
+                        if (inneUser.isAdmin()) {
+                            Objects.requireNonNull(getSupportActionBar()).setTitle(inneUser.getName() + " admin");
+                        } else {
+                            openScreen(FirebaseDatabaseActivity.class);
+                            finish();
+                        }
+                    }
+                }
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+//    [End]: onUserDataChangedInDatabase()
+
+    //    Caso haja alguma alteracao em algum dado do objeto usuario, faz o tratamente adequado
+    @Override
+    public void update(Object object) {
+        if (object instanceof User) {
+
         }
     }
-//    [End]:inYourPlace()
 
 }

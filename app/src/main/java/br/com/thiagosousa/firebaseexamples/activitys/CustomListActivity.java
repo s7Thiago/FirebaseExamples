@@ -62,6 +62,7 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
 //        [End]: onCreate()
 
     //        [Start]: initViews()
+    @Override
     public void initViews(boolean init) {
 
         if (init) {
@@ -69,6 +70,11 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
         } else {
             Log.w(CUSTOMLISTACTIVITYTAG, "The initViews() is desactivated");
         }
+    }
+
+    @Override
+    public void configureScreen(boolean configure) {
+
     }
 
 

@@ -3,8 +3,10 @@ package br.com.thiagosousa.firebaseexamples.useful;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.util.LogWriter;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -24,9 +26,10 @@ import br.com.thiagosousa.firebaseexamples.R;
  */
 
 
-public class UtilActivity extends AppCompatActivity {
+public abstract class UtilActivity extends AppCompatActivity {
 
-    private static final String UTILACTIVITYTAG = "UtilActivity Event";
+    private static final String TAG = "UtilActivity Event";
+    public static final String EXTRA_DATAOBJECT = "Object";
 
     private ProgressBar mProgressBar;
     private ProgressDialog progressDialog;
@@ -36,7 +39,7 @@ public class UtilActivity extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         Objects.requireNonNull(inputMethodManager).hideSoftInputFromWindow(view.getWindowToken(), 0);
-        Log.i(UTILACTIVITYTAG, "hideKeyboard is called");
+        Log.i(TAG, "hideKeyboard is called");
     }
 //    [End]: hiddenKeyboard()
 
@@ -48,11 +51,11 @@ public class UtilActivity extends AppCompatActivity {
         if (Objects.requireNonNull(inputMethodManager).isAcceptingText()) {
             showed = true;
             showToastShort("Keyboard is showing");
-            Log.i(UTILACTIVITYTAG, "isShowingKeyboard: Keyboard is showing");
+            Log.i(TAG, "isShowingKeyboard: Keyboard is showing");
         } else {
             showed = false;
             showToastShort("Keyboard is hidden");
-            Log.i(UTILACTIVITYTAG, "isShowingKeyboard: Keyboard is hidden");
+            Log.i(TAG, "isShowingKeyboard: Keyboard is hidden");
         }
 
         return showed;
@@ -63,12 +66,12 @@ public class UtilActivity extends AppCompatActivity {
     public void showProgressBar(boolean display) {
         if (!display) {
 
-            Log.w(UTILACTIVITYTAG, "Progressbar is invisible");
+            Log.w(TAG, "Progressbar is invisible");
             mProgressBar.setVisibility(View.GONE);
 
         } else {
 
-            Log.w(UTILACTIVITYTAG, "Progressbar is visible");
+            Log.w(TAG, "Progressbar is visible");
         }
     }
 //    [End]: showProgressBar()
@@ -117,21 +120,37 @@ public class UtilActivity extends AppCompatActivity {
     }
 //    [End]: openScreen()
 
+//    Inicia uma activity enviando objetos carregados com as informacoes do atual usuario
+//        [Start]: openScreen()
+    public void openScreen(Class activity, Object dataObject) {
+        showToastShort("Opening " + activity.getName());
+
+        Intent intent = new Intent(getBaseContext(), activity);
+
+            if (dataObject instanceof Parcelable) {
+                intent.putExtra(EXTRA_DATAOBJECT, (Parcelable) dataObject);
+            } else {
+                Log.w(TAG, "openScreen: Nao foi possível enviar o objeto para a tela, pois o mesmo nao eh uma implementacao de Parcelable");
+        }
+        startActivity(intent);
+    }
+//    [End]: openScreen()
+
     //    [Start]: isEmptyField()
     public boolean isEmptyField(TextInputEditText field) {
-        Log.i(UTILACTIVITYTAG, "isEmpty() is called");
+        Log.i(TAG, "isEmpty() is called");
         boolean isEmpty;
 
         if (field.getText().toString().equals("")) {
             //            If the refered filed is empty
             isEmpty = true;
 
-            Log.w(UTILACTIVITYTAG, "isEmpty() returned true");
+            Log.w(TAG, "isEmpty() returned true");
 
         } else {
             isEmpty = false;
-            Log.w(UTILACTIVITYTAG, "isEmpty() returned false");
-            Log.w(UTILACTIVITYTAG, "field content: " + field.getText());
+            Log.w(TAG, "isEmpty() returned false");
+            Log.w(TAG, "field content: " + field.getText());
         }
 
         return isEmpty;
@@ -140,19 +159,19 @@ public class UtilActivity extends AppCompatActivity {
 
     //    [Start]: isEmptyField()
     public boolean isEmptyField(EditText field) {
-        Log.i(UTILACTIVITYTAG, "isEmpty() is called");
+        Log.i(TAG, "isEmpty() is called");
         boolean isEmpty;
 
         if (field.getText().toString().equals("")) {
             //            If the refered filed is empty
             isEmpty = true;
 
-            Log.w(UTILACTIVITYTAG, "isEmpty() returned true");
+            Log.w(TAG, "isEmpty() returned true");
 
         } else {
             isEmpty = false;
-            Log.w(UTILACTIVITYTAG, "isEmpty() returned false");
-            Log.w(UTILACTIVITYTAG, "field content: " + field.getText());
+            Log.w(TAG, "isEmpty() returned false");
+            Log.w(TAG, "field content: " + field.getText());
         }
 
         return isEmpty;
@@ -164,7 +183,7 @@ public boolean isEqualFields(TextInputEditText fieldA, TextInputEditText fieldB)
 
     boolean isEqual = fieldB.getText().toString().equals(fieldA.getText().toString());
 
-    Log.d(UTILACTIVITYTAG, "isEqualField() is called : " + isEqual + "\nFields contents: \n"
+    Log.d(TAG, "isEqualField() is called : " + isEqual + "\nFields contents: \n"
             + "FieldA: " + fieldA.getText().toString() + "\n"
             + "FieldB: " + fieldB.getText().toString());
 
@@ -172,5 +191,27 @@ public boolean isEqualFields(TextInputEditText fieldA, TextInputEditText fieldB)
     return isEqual;
 }
 //    [End]: isEqualFields()
+
+//    [Start]: initViews()
+    public abstract void initViews(boolean init);
+//    [End]: initViews()
+
+//    [Start]: configureScreen()
+    public abstract void configureScreen(boolean configure);
+//    [End]: configureScreen()
+
+    //Usado para limitar a quantidade de letras de uma string muito longa para efeitos de representacao
+    public String limitLongString(String target, int limit) {
+        StringBuilder resultado = new StringBuilder();
+        int contador = 0;
+
+        while(limit > 0) {
+            resultado.append(target.toCharArray()[contador]);
+            limit--;
+            contador++;
+        }
+
+        return  resultado.toString();
+    }
 
 }
