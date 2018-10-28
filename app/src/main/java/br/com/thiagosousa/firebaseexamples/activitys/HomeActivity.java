@@ -24,8 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
-import br.com.thiagosousa.firebaseexamples.RecyclerViewActivity;
 import br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.CoordinatorLayoutExampleActivity;
+import br.com.thiagosousa.firebaseexamples.activitys.filepicker.FilePickerActivity;
 import br.com.thiagosousa.firebaseexamples.objects.User;
 import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
 import br.com.thiagosousa.firebaseexamples.useful.Observer.Observer;
@@ -38,11 +38,11 @@ public class HomeActivity extends AuthActivity implements View.OnClickListener, 
     private ListView homeItens;
     private String[] itens = new String[]{
             "Interação com o Firebase Database",
-            "Exemplos de lista (com Spinner Selector)",
+            "FragmentActivity (com Spinner Selector)",
             "ListView Customizado", "Gradient animation",
             "SharedAnimation Example", "CoordinatorLayout Example",
             "MoveFun Logo SVG", "Bottom Sheet Example", "ListView com viewholder design pattern",
-            "RecyclerView Example"};
+            "RecyclerView Example", "File Picker Example"};
     private ArrayAdapter<String> mAdapter;
     private CoordinatorLayout rootContainer;
     private User user;
@@ -230,6 +230,10 @@ public class HomeActivity extends AuthActivity implements View.OnClickListener, 
 
             case 9:
                 openScreen(RecyclerViewActivity.class);
+                break;
+
+            case 10:
+                openScreen(FilePickerActivity.class);
                 break;
 
             default:

@@ -13,6 +13,8 @@ package br.com.thiagosousa.firebaseexamples.activitys;
         import android.widget.Spinner;
 
         import br.com.thiagosousa.firebaseexamples.R;
+        import br.com.thiagosousa.firebaseexamples.fragments.RecyclerViewActivityFragment;
+        import br.com.thiagosousa.firebaseexamples.fragments.ResiduosListFragment;
         import br.com.thiagosousa.firebaseexamples.fragments.SimpleListFragment;
         import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
 
@@ -30,17 +32,17 @@ public class FragmentActivity extends AuthActivity implements AdapterView.OnItem
             "Opção 3",
             "Opção 4",
             "Opção 5",
-            "Opção 7",
+            "Residuos List Fragment",
             "Opção 8",
             "Opção 9",
-            "Opção 10",
+            "Fragments Activity",
             "Opção 11",
             "Opção 12",
             "Simple list fragment",
             "Opção 14",
             "Opção 15",
             "Opção 16",
-            "Opção 17",
+            "RecyclerView Fragment",
             "Opção 18",
             "Opção 19",
             "Opção 20",
@@ -98,6 +100,28 @@ public class FragmentActivity extends AuthActivity implements AdapterView.OnItem
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
+                break;
+
+            case "Residuos List Fragment":
+                ResiduosListFragment fragment = new ResiduosListFragment();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragments_container_spinnerActivity, fragment);
+                ft.addToBackStack(null);
+                ft.commit();
+                break;
+
+            case "RecyclerView Fragment":
+                RecyclerViewActivityFragment recyclerViewFragment = new RecyclerViewActivityFragment();
+
+                FragmentTransaction ft2 = getFragmentManager().beginTransaction();
+                ft2.replace(R.id.fragments_container_spinnerActivity, recyclerViewFragment);
+                ft2.addToBackStack(null);
+                ft2.commit();
+                break;
+
+            case "Fragments Activity":
+                startActivity(new Intent(getApplicationContext(), FragmentsActivity.class));
                 break;
 
             default:

@@ -44,6 +44,7 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
         initViews(true);
         configureScreen(true);
         playScreenAnimation(false);
+        redirect();
 
     }
 //    [End]: onCreate method
@@ -102,14 +103,7 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
     protected void onStart() {
         super.onStart();
 
-        //        Verifica se há alguém conectado. Se sim, abre a tela adequada
-        if (isAnyoneConnected()) {
-            onUserDataChangedInDatabase();
-            finish();
-        } else {
-            Log.i(TAG, "Não há ninguém conectado. Permanecendo nesta tela.");
-        }
-
+//        redirect();
     }
 //    [End]: onStart method
 
@@ -257,5 +251,17 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
         });
     }
 //    [End]: getUserDataFromDatabase()
+
+
+//    [Start]: redirect()
+    private void redirect() {
+        //        Verifica se há alguém conectado. Se sim, abre a tela adequada
+        if (isAnyoneConnected()) {
+            onUserDataChangedInDatabase();
+        } else {
+            Log.i(TAG, "Não há ninguém conectado. Permanecendo nesta tela.");
+        }
+    }
+//    [End]: redirect()
 
 }

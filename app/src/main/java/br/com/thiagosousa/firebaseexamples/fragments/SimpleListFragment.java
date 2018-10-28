@@ -27,7 +27,12 @@ public class SimpleListFragment extends Fragment {
         View view = inflater.inflate(R.layout.simple_list_fragment, container, false);
         initViews(true, container, view);
 
-        //adapter = new ArrayAdapter<String>(android.R.layout.simple_list_item_1, this, itens);
+//        Configurando os itens para a lista do fragment
+        itens = addItens(itens, 300);
+
+//        Configurando a lista do fragment
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext() ,android.R.layout.simple_list_item_1, itens);
+        listView.setAdapter(adapter);
         return view;
     }
 
@@ -45,9 +50,16 @@ public class SimpleListFragment extends Fragment {
     }
 
     public ArrayList<String> addItens(ArrayList<String> arrayList, int numberItens) {
+
+//        Inicializando a lista
+        arrayList = new ArrayList<>();
+
+//        Preenchendo a lista
         for(int i = 0; i < numberItens; i++){
             arrayList.add("Item " + i);
         }
+
+//        Retornando a lista preenchida
         return arrayList;
     }
 }

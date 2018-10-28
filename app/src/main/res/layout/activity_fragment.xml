@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/green_lines_background"
     android:layout_height="match_parent"
     tools:context=".activitys.FragmentActivity">
 
@@ -28,23 +29,26 @@
             />
 
         <LinearLayout
-            android:background="@android:color/darker_gray"
+            android:backgroundTint="@android:color/transparent"
+            android:background="@android:color/transparent"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                style="@android:style/Widget.Material.ButtonBar"
+            <android.support.design.button.MaterialButton
                 android:id="@+id/spinnerActivity_ActionButton1"
                 android:layout_weight="1"
+                app:rippleColor="@android:color/holo_orange_light"
+                app:cornerRadius="0dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="No Action"/>
 
-            <Button
-                style="@android:style/Widget.Material.ButtonBar"
+            <android.support.design.button.MaterialButton
                 android:id="@+id/spinnerActivity_ActionButton2"
                 android:layout_weight="1"
+                app:cornerRadius="0dp"
+                app:rippleColor="@android:color/holo_orange_light"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Remove Fragment"/>

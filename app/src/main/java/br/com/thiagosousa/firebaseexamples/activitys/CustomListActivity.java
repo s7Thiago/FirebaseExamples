@@ -39,20 +39,8 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
                 "Pneu de carro inútil"
         };
 
-        residuos = new ArrayList<Residuo>();
-//        Populando a lista de residuos
-        residuos.add(new Residuo(nomes[0], 0, 0, false));
-        residuos.add(new Residuo(nomes[1], 1, 5, true));
-        residuos.add(new Residuo(nomes[2], 2, 5, true));
-        residuos.add(new Residuo(nomes[3], 3, 4, true));
-        residuos.add(new Residuo(nomes[4], 4, 1, true));
-        residuos.add(new Residuo(nomes[5], 5, 3, false));
-        residuos.add(new Residuo(nomes[6], 6, 7, true));
-        residuos.add(new Residuo(nomes[7], 7, 4, true));
-        residuos.add(new Residuo(nomes[8], 8, 4, false));
-        residuos.add(new Residuo(nomes[9], 9, 2, true));
-        residuos.add(new Residuo(nomes[10], 10, 6, true));
-        residuos.add(new Residuo(nomes[11], 11, 4, true));
+        residuos = loadItens();
+
 
         adapter = new ResiduoAdapter(this, residuos);
         mainListView.setAdapter(adapter);
@@ -115,4 +103,25 @@ public class CustomListActivity extends UtilActivity implements AdapterView.OnIt
         }
     }
 //        [End]: initViews()
+
+//    [Start]: loadItens()
+    public ArrayList<Residuo> loadItens() {
+        ArrayList<Residuo> list = new ArrayList<>();
+
+        list.add(new Residuo(nomes[0], 0, 0, false));
+        list.add(new Residuo(nomes[1], 1, 5, true));
+        list.add(new Residuo(nomes[2], 2, 5, true));
+        list.add(new Residuo(nomes[3], 3, 4, true));
+        list.add(new Residuo(nomes[4], 4, 1, true));
+        list.add(new Residuo(nomes[5], 5, 3, false));
+        list.add(new Residuo(nomes[6], 6, 7, true));
+        list.add(new Residuo(nomes[7], 7, 4, true));
+        list.add(new Residuo(nomes[8], 8, 4, false));
+        list.add(new Residuo(nomes[9], 9, 2, true));
+        list.add(new Residuo(nomes[10], 10, 6, true));
+        list.add(new Residuo(nomes[11], 11, 4, true));
+
+        return list;
+    }
+//    [End]: loadItens()
 }

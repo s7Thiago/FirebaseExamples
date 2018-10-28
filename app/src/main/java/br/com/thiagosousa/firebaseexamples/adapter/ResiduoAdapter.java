@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.thiagosousa.firebaseexamples.R;
@@ -21,6 +22,11 @@ public class ResiduoAdapter extends BaseAdapter {
     List<Residuo> residuos;
 
     public ResiduoAdapter(Context context, List<Residuo> residuos) {
+        this.context = context;
+        this.residuos = residuos;
+    }
+
+    public ResiduoAdapter(Context context, ArrayList<Residuo> residuos) {
         this.context = context;
         this.residuos = residuos;
     }

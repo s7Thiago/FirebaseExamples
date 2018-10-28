@@ -1,4 +1,4 @@
-package br.com.thiagosousa.firebaseexamples;
+package br.com.thiagosousa.firebaseexamples.activitys;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.adapter.MyRecyclerViewAdapter;
 import br.com.thiagosousa.firebaseexamples.objects.ItemRecyclerView;
 import br.com.thiagosousa.firebaseexamples.useful.UtilActivity;

@@ -7,4 +7,5 @@
     <dimen name="item_description_size">11sp</dimen>
     <dimen name="listitem_margin">10dp</dimen>
     <dimen name="listitem_margin_left">29dp</dimen>
+    <dimen name="fragments_limits_margins">5dp</dimen>
 </resources>
