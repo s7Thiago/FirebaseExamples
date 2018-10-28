@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/fragments_limits_margins"
+    tools:context=".activitys.FragmentsActivity">
+
+    <!--Primeira linha-->
+    <!--Container 1-->
+    <LinearLayout
+        android:id="@+id/fragment_container1"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/fragments_line2"
+        android:paddingTop="@dimen/fragments_limits_margins"
+        android:paddingBottom="@dimen/fragments_limits_margins"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_container1">
+
+        <!--Segunda linha-->
+        <!--Conteiner2-->
+        <LinearLayout
+            android:id="@+id/fragment_container2"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/fragments_limits_margins"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!--Segunda linha-->
+            <!--Container 3-->
+            <LinearLayout
+                android:id="@+id/fragment_container3"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/fragments_limits_margins"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorHint"
+                android:orientation="horizontal" />
+
+            <!--Segunda linha-->
+            <!--Container 4-->
+            <LinearLayout
+                android:id="@+id/fragment_container4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!--Terceira linha-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:baselineAligned="true"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/fragments_line2">
+
+        <!--Container 5-->
+        <LinearLayout
+            android:id="@+id/fregment_container5"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/fragments_limits_margins"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/colorHint"
+            android:orientation="vertical" />
+
+        <!--Container 6-->
+        <LinearLayout
+            android:id="@+id/fregment_container6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryLight"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
