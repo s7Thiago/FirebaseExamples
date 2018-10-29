@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     tools:context="br.com.thiagosousa.firebaseexamples.activitys.RegisterActivity">
 
     <!--Register form-->
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/register_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,14 +18,14 @@
         android:layout_marginTop="@dimen/field_margin">
 
         <!--Name field-->
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name_input_layout_for_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toLeftOf="parent">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name_field_for_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,10 +34,10 @@
                 android:inputType="textPersonName"
                 android:padding="10dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!--Last name field-->
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/last_name_input_layout_for_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name_input_layout_for_register">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/last_name_field_for_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,10 +54,10 @@
                 android:inputType="textPersonName"
                 android:padding="10dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!--Email field-->
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_input_layout_for_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/last_name_input_layout_for_register">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_field_for_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,10 +74,10 @@
                 android:inputType="textWebEmailAddress"
                 android:padding="10dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!--Password field-->
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_input_layout_for_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email_input_layout_for_register">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_field_for_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,10 +94,10 @@
                 android:inputType="textVisiblePassword"
                 android:padding="10dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!--Confirm password field-->
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/confirm_password_input_layout_for_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password_input_layout_for_register">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/confirm_password_field_for_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
                 android:inputType="textVisiblePassword"
                 android:padding="10dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/createNewUserButton"
@@ -128,6 +128,6 @@
             app:layout_constraintTop_toBottomOf="@id/confirm_password_input_layout_for_register"
             />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

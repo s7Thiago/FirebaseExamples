@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,12 +12,12 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.AppCompatSpinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:layout_width="match_parent"
             android:id="@+id/spinner_SpinnerActivity"
             android:layout_height="0dp"
             android:layout_weight="0.195">
-        </android.support.v7.widget.AppCompatSpinner>
+        </androidx.appcompat.widget.AppCompatSpinner>
 
         <LinearLayout
             android:layout_margin="@dimen/button_margin_top"
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/spinnerActivity_ActionButton1"
                 android:layout_weight="1"
                 app:rippleColor="@android:color/holo_orange_light"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="No Action"/>
 
-            <android.support.design.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/spinnerActivity_ActionButton2"
                 android:layout_weight="1"
                 app:cornerRadius="0dp"
@@ -55,4 +55,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

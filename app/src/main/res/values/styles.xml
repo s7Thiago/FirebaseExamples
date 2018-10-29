@@ -32,7 +32,7 @@
         <item name="android:textSize">@dimen/auth_text_size</item>
     </style>
 
-    <style name="RegisterButtonStyle" parent="Widget.AppCompat.ButtonBar">
+    <style name="RegisterButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>

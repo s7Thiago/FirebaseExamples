@@ -1,8 +1,8 @@
 package br.com.thiagosousa.firebaseexamples.activitys;
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.TextInputEditText;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import com.google.android.material.textfield.TextInputEditText;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;

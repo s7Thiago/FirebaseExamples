@@ -2,7 +2,7 @@ package br.com.thiagosousa.firebaseexamples.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
-import android.support.constraint.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;

@@ -81,7 +81,9 @@
         <activity android:name=".activitys.RecyclerViewActivity" />
         <activity android:name=".activitys.FragmentsActivity" />
         <activity android:name=".activitys.filepicker.FilePickerActivity" />
-        <activity android:name=".activitys.filepicker.PhotoPickerActivity"></activity>
+        <activity android:name=".activitys.filepicker.PhotoPickerActivity" />
+        <activity android:name=".activitys.LicensesActivity" />
+        <activity android:name=".activitys.LicenseViewActivity"></activity>
     </application>
 
 </manifest>

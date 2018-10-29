@@ -2,8 +2,8 @@ package br.com.thiagosousa.firebaseexamples.activitys;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
 import android.widget.LinearLayout;
 

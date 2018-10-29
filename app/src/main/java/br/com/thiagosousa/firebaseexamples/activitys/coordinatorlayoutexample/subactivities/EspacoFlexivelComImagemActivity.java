@@ -1,6 +1,6 @@
 package br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.subactivities;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import br.com.thiagosousa.firebaseexamples.R;

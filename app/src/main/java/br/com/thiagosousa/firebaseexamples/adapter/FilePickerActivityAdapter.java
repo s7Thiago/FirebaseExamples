@@ -1,11 +1,10 @@
 package br.com.thiagosousa.firebaseexamples.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import br.com.thiagosousa.firebaseexamples.R;
-import br.com.thiagosousa.firebaseexamples.activitys.filepicker.FilePickerActivity;
 import br.com.thiagosousa.firebaseexamples.activitys.filepicker.FilePickerHolder;
 import br.com.thiagosousa.firebaseexamples.activitys.filepicker.PhotoPickerActivity;
 

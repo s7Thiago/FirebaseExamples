@@ -1,9 +1,9 @@
 package br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.subactivities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +18,7 @@ public class AppBarPadraoActivity extends AppCompatActivity{
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private android.support.v7.widget.Toolbar mToolbar;
+    private androidx.appcompat.widget.Toolbar mToolbar;
     private String itens[];
     private int numItens = 3000;
 

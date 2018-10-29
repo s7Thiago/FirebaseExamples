@@ -28,4 +28,10 @@
         app:showAsAction="never"
         android:orderInCategory="4"/>
 
+    <item
+        android:id="@+id/licensesScreen"
+        android:title="Licenses"
+        app:showAsAction="never"
+        android:orderInCategory="5"/>
+
 </menu>
