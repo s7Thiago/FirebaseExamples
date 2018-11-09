@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class LicenseViewActivity extends AppCompatActivity {
     private static final String TAG = "LicenseViewActivity";
 
+// Exibe o conteúdo da licença
     private TextView licenseContentTextView;
 
     @Override

@@ -2,10 +2,10 @@ package br.com.thiagosousa.firebaseexamples.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+importimportimportimportimportimportimportimport androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
+iimportmport android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -53,7 +53,7 @@ public class MessageAdapter extends BaseAdapter {
         TextView userEmailTextView = linha.findViewById(R.id.item_activity_database_textview_user_email);
         TextView userMessageTextView = linha.findViewById(R.id.item_activity_database_textview_user_message);
         TextView userMessageTimeTextView = linha.findViewById(R.id.item_activity_database_textview_user_message_time);
-        ConstraintLayout messageBaloonContainer = linha.findViewById(R.id.message_baloon_container);
+        ConstraintLayout messagemessageBaloonContainermessagemessageBaloonContainerBaloonContainerBaloonContainer = linha.findViewById(R.id.message_baloon_container);
         TextView textViewDebug = linha.findViewById(R.id.database_messag_textview);
         LinearLayout linearLayout = linha.findViewById(R.id.item_message_linear_layout_container);
         AnimationDrawable animationDrawable;
@@ -79,7 +79,7 @@ public class MessageAdapter extends BaseAdapter {
             messageBaloonContainer.setBackgroundResource(R.drawable.message_baloon_other);
 
 /*            animacao gradiente
-            animationDrawable = (AnimationDrawable) linearLayout.getBackground();
+            animationDrawable = (AnimAnimationDrawableAnimAnimationDrawableationDrawableationDrawable) linearLayout.getBackground();
             animationDrawable.setEnterFadeDuration(1000);
             animationDrawable.setExitFadeDuration(1000);
             animationDrawable.start();*/
