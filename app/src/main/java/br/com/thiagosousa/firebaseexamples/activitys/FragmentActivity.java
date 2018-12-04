@@ -16,7 +16,7 @@ package br.com.thiagosousa.firebaseexamples.activitys;
         import br.com.thiagosousa.firebaseexamples.fragments.RecyclerViewActivityFragment;
         import br.com.thiagosousa.firebaseexamples.fragments.ResiduosListFragment;
         import br.com.thiagosousa.firebaseexamples.fragments.SimpleListFragment;
-        import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+        import br.com.thiagosousa.firebaseexamples.firebase.AuthActivity;
 
 public class FragmentActivity extends AuthActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 

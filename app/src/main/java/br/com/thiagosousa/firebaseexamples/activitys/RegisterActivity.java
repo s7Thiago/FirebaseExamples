@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.objects.User;
-import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.firebase.AuthActivity;
 
 public class RegisterActivity extends AuthActivity implements View.OnClickListener {
 

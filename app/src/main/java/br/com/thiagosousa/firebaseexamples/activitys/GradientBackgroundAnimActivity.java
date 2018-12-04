@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 import br.com.thiagosousa.firebaseexamples.R;
-import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.firebase.AuthActivity;
 
 public class GradientBackgroundAnimActivity extends AuthActivity {
 

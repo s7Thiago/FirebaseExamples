@@ -1,4 +1,4 @@
-package br.com.thiagosousa.firebaseexamples.useful;
+package br.com.thiagosousa.firebaseexamples.firebase;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -32,6 +32,7 @@ import br.com.thiagosousa.firebaseexamples.objects.Message;
 import br.com.thiagosousa.firebaseexamples.objects.User;
 import br.com.thiagosousa.firebaseexamples.useful.Observer.Observer;
 import br.com.thiagosousa.firebaseexamples.useful.Observer.Subject;
+import br.com.thiagosousa.firebaseexamples.useful.UtilActivity;
 
 @SuppressLint("Registered")
 public abstract class AuthActivity extends UtilActivity implements Subject {

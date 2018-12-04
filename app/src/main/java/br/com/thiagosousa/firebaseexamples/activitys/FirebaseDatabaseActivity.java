@@ -23,7 +23,7 @@ import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.adapter.MessageAdapter;
 import br.com.thiagosousa.firebaseexamples.objects.Message;
 import br.com.thiagosousa.firebaseexamples.objects.User;
-import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.firebase.AuthActivity;
 
 public class FirebaseDatabaseActivity extends AuthActivity implements View.OnClickListener {
     private static final String TAG = "FireDatabaseActivity";

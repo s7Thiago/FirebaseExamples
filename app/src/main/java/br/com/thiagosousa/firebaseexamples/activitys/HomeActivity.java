@@ -27,7 +27,7 @@ import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.activitys.coordinatorlayoutexample.CoordinatorLayoutExampleActivity;
 import br.com.thiagosousa.firebaseexamples.activitys.filepicker.FilePickerActivity;
 import br.com.thiagosousa.firebaseexamples.objects.User;
-import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.firebase.AuthActivity;
 import br.com.thiagosousa.firebaseexamples.useful.Observer.Observer;
 
 public class HomeActivity extends AuthActivity implements View.OnClickListener, AdapterView.OnItemClickListener, Observer {

@@ -21,7 +21,7 @@ import java.util.Objects;
 
 import br.com.thiagosousa.firebaseexamples.R;
 import br.com.thiagosousa.firebaseexamples.objects.User;
-import br.com.thiagosousa.firebaseexamples.useful.AuthActivity;
+import br.com.thiagosousa.firebaseexamples.firebase.AuthActivity;
 
 public class LoginActivity extends AuthActivity implements View.OnClickListener {
     private static final String TAG = "LoginActivity";
@@ -44,7 +44,6 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
         initViews(true);
         configureScreen(true);
         playScreenAnimation(false);
-        redirect();
 
     }
 //    [End]: onCreate method
