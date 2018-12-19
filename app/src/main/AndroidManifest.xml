@@ -83,7 +83,11 @@
         <activity android:name=".activitys.filepicker.FilePickerActivity" />
         <activity android:name=".activitys.filepicker.PhotoPickerActivity" />
         <activity android:name=".activitys.LicensesActivity" />
-        <activity android:name=".activitys.LicenseViewActivity"></activity>
+        <activity android:name=".activitys.LicenseViewActivity" />
+        <activity android:name=".activitys.AnimatedVectorDrawableActivity" />
+        <activity
+            android:name=".activitys.AnimatedVectorDrawable_Ex1Activity"
+            android:label="@string/title_activity_animated_vector_drawable__ex1"></activity>
     </application>
 
 </manifest>
