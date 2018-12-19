@@ -29,8 +29,8 @@ public class CoordinatorRecyclerViewAdapter extends RecyclerView.Adapter<Coordin
     // Create new views (invoked by the layout manager)
     @NonNull
     @Override
-    public CoordinatorRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
-                                                                          int viewType) {
+    public CoordinatorRecyclerViewAdapter.MyViewHolder onCreateViewHolder(
+            @NonNull ViewGroup parent, int viewType) {
         // create a new view
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
                 .inflate(android.R.layout.simple_list_item_1, parent, false);

@@ -47,5 +47,7 @@
     <string name="description_of_this_item">Description of this item</string>
     <string name="date">Date</string>
     <string name="open_image_picker">Open image picker</string>
+    <string name="title_activity_animated_vector_drawable__ex1">AnimatedVectorDrawable_Ex1Activity
+    </string>
 
 </resources>

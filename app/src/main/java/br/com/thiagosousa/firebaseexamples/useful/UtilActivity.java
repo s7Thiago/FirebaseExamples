@@ -214,4 +214,8 @@ public boolean isEqualFields(TextInputEditText fieldA, TextInputEditText fieldB)
         return  resultado.toString();
     }
 
+    public boolean invertBoolean(boolean target) {
+        return !target;
+    }
+
 }
