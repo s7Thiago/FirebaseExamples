@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -102,7 +104,7 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
     protected void onStart() {
         super.onStart();
 
-//        redirect();
+        redirect();
     }
 //    [End]: onStart method
 
@@ -252,11 +254,13 @@ public class LoginActivity extends AuthActivity implements View.OnClickListener 
 //    [End]: getUserDataFromDatabase()
 
 
-//    [Start]: redirect()
+    //    [Start]: redirect()
     private void redirect() {
         //        Verifica se há alguém conectado. Se sim, abre a tela adequada
         if (isAnyoneConnected()) {
-            onUserDataChangedInDatabase();
+            //onUserDataChangedInDatabase();
+            openScreen(HomeActivity.class);
+            finish();
         } else {
             Log.i(TAG, "Não há ninguém conectado. Permanecendo nesta tela.");
         }
