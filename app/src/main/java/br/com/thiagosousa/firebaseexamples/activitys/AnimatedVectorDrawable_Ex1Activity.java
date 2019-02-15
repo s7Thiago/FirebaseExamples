@@ -109,31 +109,36 @@ public class AnimatedVectorDrawable_Ex1Activity extends UtilActivity {
         FloatingActionButton fab = (FloatingActionButton) v;
         Drawable drawable = fab.getDrawable();
 
+        Log.w(TAG, "testeClickFAB: alternator value: [" + teste + "]");
+
         if (teste == 0) {
             teste = 1;
-            fab.setImageResource(R.drawable.play_pause_anim);
+            //fab.setImageDrawable(getResources().getDrawable(R.drawable.play_pause_anim, this.getTheme()));
 
             //[start]: animation treatment
-            if(drawable instanceof AnimatedVectorDrawable) {
-                AnimatedVectorDrawable avd = (AnimatedVectorDrawable) drawable;
+            Log.i(TAG, "testeClickFAB: play to pause");
+            Log.w(TAG, "testeClickFAB: AnimatedVectorDrawable animation starting");
+
+//                Futuramente a linha abaixo precisa ser corrigida. caso hajam problemas
+            AnimatedVectorDrawableCompat avd = AnimatedVectorDrawableCompat.create(this, R.drawable.play_pause_anim);
+            fab.setImageDrawable(avd);
+
+            assert avd != null;
                 avd.start();
-            } else if (drawable instanceof AnimatedVectorDrawableCompat) {
-                AnimatedVectorDrawableCompat avdc = (AnimatedVectorDrawableCompat) drawable;
-                avdc.start();
-            }
             //[end]: animation treatment
         } else {
             teste = 0;
-            fab.setImageResource(R.drawable.pause_play_anim);
 
             //[start]: animation treatment
-            if(drawable instanceof AnimatedVectorDrawable) {
-                AnimatedVectorDrawable avd = (AnimatedVectorDrawable) drawable;
-                avd.start();
-            } else if (drawable instanceof AnimatedVectorDrawableCompat) {
-                AnimatedVectorDrawableCompat avdc = (AnimatedVectorDrawableCompat) drawable;
-                avdc.start();
-            }
+            Log.i(TAG, "testeClickFAB: pause to play");
+            Log.w(TAG, "testeClickFAB: AnimatedVectorDrawable animation starting");
+
+//                Futuramente a linha abaixo precisa ser corrigida. caso hajam problemas
+            AnimatedVectorDrawableCompat avd = AnimatedVectorDrawableCompat.create(this, R.drawable.pause_play_anim);
+            fab.setImageDrawable(avd);
+
+            assert avd != null;
+            avd.start();
             //[end]: animation treatment
         }
     }
