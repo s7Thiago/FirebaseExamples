@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activitys.ConstraintAnimationExample1Activity" />
+        <activity
+            android:name=".activitys.ConstraintAnimationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activitys.LoginActivity"
             android:exported="true"
@@ -29,19 +33,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activitys.HomeActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activitys.RegisterActivity"
             android:exported="true"
             android:label="@string/button_register" />
-        <activity
-            android:name=".activitys.HomeActivity"
-            android:exported="true"
-            android:label="@string/title_activity_home"
-            android:parentActivityName=".useful.UtilActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.thiagosousa.firebaseexamples.useful.UtilActivity" />
-        </activity>
         <activity
             android:name=".activitys.FirebaseDatabaseActivity"
             android:label="@string/database_screen_label"
@@ -87,7 +85,7 @@
         <activity android:name=".activitys.AnimatedVectorDrawableActivity" />
         <activity
             android:name=".activitys.AnimatedVectorDrawable_Ex1Activity"
-            android:label="@string/title_activity_animated_vector_drawable__ex1"></activity>
+            android:label="@string/title_activity_animated_vector_drawable__ex1" />
     </application>
 
 </manifest>
