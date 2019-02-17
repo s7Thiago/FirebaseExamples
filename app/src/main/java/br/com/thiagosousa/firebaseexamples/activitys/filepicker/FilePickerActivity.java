@@ -24,7 +24,7 @@ public class FilePickerActivity extends UtilActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_picker);
 
-//        Lista de itens que sera preenchida por loadItens()
+//        Lista de itens que sera preenchida
         itens = new ArrayList<>();
         itens.add("ImagePicker");
 

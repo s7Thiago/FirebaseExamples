@@ -42,7 +42,8 @@ public class HomeActivity extends AuthActivity implements View.OnClickListener, 
             "ListView Customizado", "Gradient animation",
             "SharedAnimation Example", "CoordinatorLayout Example",
             "MoveFun Logo SVG", "Bottom Sheet Example", "ListView com viewholder design pattern",
-            "RecyclerView Example", "File Picker Example", "Animated Vector Drawable example"};
+            "RecyclerView Example", "File Picker Example", "Animated Vector Drawable example",
+            "Constraint Layout Animation"};
     private ArrayAdapter<String> mAdapter;
     private CoordinatorLayout rootContainer;
     private User user;
@@ -242,6 +243,10 @@ public class HomeActivity extends AuthActivity implements View.OnClickListener, 
 
             case 11:
                 openScreen(AnimatedVectorDrawableActivity.class);
+                break;
+
+            case 12:
+                openScreen(ConstraintAnimationActivity.class);
                 break;
 
             default:

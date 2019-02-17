@@ -47,6 +47,7 @@ public class FilePickerActivityAdapter extends RecyclerView.Adapter<FilePickerHo
                     case 0:
                         context.startActivity(new Intent(holder.itemView.getContext(), PhotoPickerActivity.class));
                         break;
+
                     default:
                         Toast.makeText(holder.itemView.getContext(), "Ação não definda", Toast.LENGTH_SHORT).show();
                         break;

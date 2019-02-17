@@ -12,7 +12,10 @@ import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 
 public class ConstraintAnimationExample1Activity extends AppCompatActivity {
@@ -20,7 +23,7 @@ public class ConstraintAnimationExample1Activity extends AppCompatActivity {
     private static final String TAG = "ConstraintAnimationExam";
 
     Button animationButton;
-    boolean switched;
+    boolean switched = false;
     ConstraintLayout constraint;
 
     @Override
@@ -49,7 +52,7 @@ public class ConstraintAnimationExample1Activity extends AppCompatActivity {
             switched = false;
 
             Transition transition = new ChangeBounds();
-            transition.setInterpolator(new AnticipateOvershootInterpolator());
+            transition.setInterpolator(new OvershootInterpolator());
             transition.setDuration(1000);
 
             ConstraintSet constraintSet = new ConstraintSet();
@@ -60,7 +63,7 @@ public class ConstraintAnimationExample1Activity extends AppCompatActivity {
             switched = true;
 
             Transition transition = new ChangeBounds();
-            transition.setInterpolator(new AnticipateOvershootInterpolator());
+            transition.setInterpolator(new OvershootInterpolator());
             transition.setDuration(1000);
 
             ConstraintSet constraintSet = new ConstraintSet();
